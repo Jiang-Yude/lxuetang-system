@@ -61,6 +61,22 @@
   .hero-quote { max-width: 640px; margin: 0 auto; color: #FFF4E5; font-size: 1rem; font-style: italic; line-height: 1.9; }
   .hero-quote p + p { margin-top: 10px; }
 
+  .hero-formula {
+    display: inline-block;
+    background: rgba(255, 228, 184, 0.14);
+    border: 1.5px solid rgba(255, 228, 184, 0.45);
+    color: #FFE4B8;
+    padding: 16px 32px; border-radius: 999px;
+    font-size: clamp(1.15rem, 2.6vw, 1.45rem);
+    font-weight: 700; letter-spacing: .05em;
+    margin: 0 auto 32px;
+    font-family: -apple-system, "PingFang TC", sans-serif;
+    backdrop-filter: blur(4px);
+  }
+  .hero-formula .f-eq { color: #FFFFFF; margin: 0 .25em; opacity: .7; }
+  .hero-formula .f-plus { color: #FFFFFF; margin: 0 .2em; opacity: .7; }
+  .hero-formula .f-key { color: #FFFFFF; }
+
   section { padding: 72px 24px; border-bottom: 1px solid var(--line-soft); }
   section:last-of-type { border-bottom: none; }
   section.bg-alt { background: var(--bg-alt); }
@@ -322,6 +338,9 @@
     <p class="eyebrow">旅學堂 陪力卡</p>
     <h1>陪伴的影響力評估框架</h1>
     <p class="subtitle">社區陪伴工作的 15 個動作</p>
+    <div class="hero-formula">
+      <span class="f-key">陪力</span><span class="f-eq">＝</span>陪伴<span class="f-plus">＋</span>讓力量長出來
+    </div>
     <div class="hero-quote">
       <p>「在社區營造與地方創生的現場，我們時常做著難以言說的事，像是接住一個猶豫的人、陪一個反覆的過程、把一個角色交出去、讓影響力擴出圈外。」</p>
       <p>這些動作每天都在發生，但很少被清楚命名。陪力卡把它們整理成 15 張固定的卡，讓看不見的陪伴工作，被看見、被盤點、被傳承。</p>
