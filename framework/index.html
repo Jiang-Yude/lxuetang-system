@@ -4,36 +4,535 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="robots" content="noindex, nofollow, noarchive, nosnippet">
-<title>旅學堂 培力卡介紹（整理中）</title>
+<title>旅學堂 培力卡｜社會影響力框架</title>
 <style>
-  body {
-    margin: 0; padding: 80px 20px;
-    font-family: "Noto Serif TC", "PingFang TC", serif;
-    background: #FBEEE6; color: #2C2824;
-    min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center;
-    line-height: 1.8;
+  :root {
+    --bg:        #FBEEE6;
+    --bg-alt:    #F5DDD0;
+    --paper:     #FFFAF5;
+    --dark:      #B8523F;
+    --dark-soft: #9A3F2B;
+    --accent:    #D48A5A;
+    --brick:     #8A2F15;
+    --brick-soft:#F5C8A8;
+    --ink:       #2C2824;
+    --ink-soft:  #6B5F56;
+    --line:      #EAD2C4;
+    --line-soft: #F3E0D2;
+
+    --g1-bg: #FDF0F7; --g1-border: #E8B4D4; --g1-text: #8B3A6E;
+    --g2-bg: #E1F5EE; --g2-border: #9FE1CB; --g2-text: #0F6E56;
+    --g3-bg: #FAECE7; --g3-border: #F5C4B3; --g3-text: #993C1D;
+    --g4-bg: #EEEDFE; --g4-border: #CECBF6; --g4-text: #534AB7;
+    --g5-bg: #E6F1FB; --g5-border: #B5D4F4; --g5-text: #185FA5;
   }
-  .box { max-width: 520px; text-align: center; }
-  h1 { font-size: 1.6rem; font-weight: 700; margin: 0 0 14px; color: #B8523F; }
-  p { font-size: 0.98rem; color: #6B5F56; line-height: 1.85; margin: 0 0 20px; }
-  a { color: #B8523F; text-decoration: none; font-size: 0.92rem; font-weight: 600; }
-  a:hover { text-decoration: underline; }
-  .tag {
-    display: inline-block; padding: 4px 14px; border-radius: 20px;
-    background: linear-gradient(135deg, #D48A5A, #B57A3A);
-    color: #FFF8F0; font-size: 0.85rem; font-weight: 600;
-    margin-bottom: 18px; letter-spacing: .04em;
+
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; padding: 0;
+    font-family: "Noto Serif TC", "PingFang TC", -apple-system, serif;
+    background: var(--bg); color: var(--ink);
+    line-height: 1.85; font-size: 17px;
+    -webkit-font-smoothing: antialiased;
+  }
+  .wrap { max-width: 920px; margin: 0 auto; padding: 0 24px; }
+
+  .hero {
+    background: linear-gradient(135deg, var(--dark), var(--dark-soft));
+    color: #FFFFFF; padding: 92px 24px 88px; text-align: center;
+  }
+  .hero-mark { display: inline-block; width: 52px; height: 3px; background: #FFE4B8; margin-bottom: 22px; }
+  .hero .eyebrow {
+    font-family: -apple-system, "PingFang TC", sans-serif;
+    font-size: 13px; letter-spacing: .22em;
+    color: #FFE4B8; font-weight: 700;
+    text-transform: uppercase; margin: 0 0 18px;
+  }
+  .hero h1 {
+    font-size: clamp(2rem, 4.5vw, 2.7rem);
+    margin: 0 0 16px; font-weight: 700; color: #FFFFFF;
+    letter-spacing: -0.01em;
+  }
+  .hero .subtitle {
+    color: #FFE4B8; font-size: 1.08rem; letter-spacing: .1em;
+    margin: 0 0 32px;
     font-family: -apple-system, "PingFang TC", sans-serif;
   }
+  .hero-quote { max-width: 640px; margin: 0 auto; color: #FFF4E5; font-size: 1rem; font-style: italic; line-height: 1.9; }
+  .hero-quote p + p { margin-top: 10px; }
+
+  section { padding: 72px 24px; border-bottom: 1px solid var(--line-soft); }
+  section:last-of-type { border-bottom: none; }
+  section.bg-alt { background: var(--bg-alt); }
+
+  .eyebrow {
+    font-family: -apple-system, "PingFang TC", sans-serif;
+    font-size: 13px; letter-spacing: .22em;
+    color: var(--accent); font-weight: 700;
+    text-transform: uppercase; margin: 0 0 14px;
+  }
+  .eyebrow .num { color: var(--brick); margin-right: 8px; }
+
+  h2 {
+    font-size: clamp(1.5rem, 3vw, 2rem);
+    margin: 0 0 18px; font-weight: 700;
+    color: var(--dark); line-height: 1.35; letter-spacing: -0.01em;
+  }
+  h3 { font-size: 1.22rem; font-weight: 700; margin: 28px 0 10px; color: var(--dark); }
+  p { margin: 0 0 14px; }
+  .lead { font-size: 1.08rem; color: var(--ink-soft); line-height: 1.9; margin-bottom: 20px; }
+  strong { color: var(--brick); font-weight: 700; }
+
+  .esg-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin: 28px 0 20px; }
+  @media (max-width: 680px) { .esg-grid { grid-template-columns: 1fr; } }
+  .esg-card { background: var(--paper); border: 1px solid var(--line); border-radius: 12px; padding: 22px 24px; }
+  .esg-card .tag {
+    display: inline-block; font-size: 11px; font-weight: 700;
+    padding: 3px 10px; border-radius: 999px;
+    background: var(--bg-alt); color: var(--dark);
+    letter-spacing: .08em; margin-bottom: 10px;
+    font-family: -apple-system, "PingFang TC", sans-serif;
+  }
+  .esg-card h4 { font-size: 1.08rem; margin: 0 0 8px; color: var(--dark); font-weight: 700; }
+  .esg-card p { font-size: .95rem; color: var(--ink-soft); margin: 0; line-height: 1.75; }
+  .esg-card.highlight { background: var(--dark); border-color: var(--dark); }
+  .esg-card.highlight .tag { background: rgba(255,228,184,0.2); color: #FFE4B8; }
+  .esg-card.highlight h4 { color: #FFFFFF; }
+  .esg-card.highlight p { color: #FFF4E5; }
+
+  .phases-flow {
+    display: grid; grid-template-columns: repeat(5, 1fr);
+    gap: 8px; margin: 28px 0;
+  }
+  @media (max-width: 560px) { .phases-flow { grid-template-columns: 1fr 1fr; } }
+  .phase-pill { border-radius: 10px; padding: 18px 10px; text-align: center; border: 1px solid; }
+  .phase-pill .p-code { font-family: -apple-system, "PingFang TC", sans-serif; font-size: 11px; letter-spacing: .15em; font-weight: 700; }
+  .phase-pill .p-name { font-size: 1.15rem; font-weight: 700; margin: 4px 0; }
+  .phase-pill .p-side { font-family: -apple-system, "PingFang TC", sans-serif; font-size: 12px; opacity: 0.8; }
+  .phase-pill.g1 { background: var(--g1-bg); border-color: var(--g1-border); color: var(--g1-text); }
+  .phase-pill.g2 { background: var(--g2-bg); border-color: var(--g2-border); color: var(--g2-text); }
+  .phase-pill.g3 { background: var(--g3-bg); border-color: var(--g3-border); color: var(--g3-text); }
+  .phase-pill.g4 { background: var(--g4-bg); border-color: var(--g4-border); color: var(--g4-text); }
+  .phase-pill.g5 { background: var(--g5-bg); border-color: var(--g5-border); color: var(--g5-text); }
+
+  .card-group { margin-bottom: 32px; }
+  .card-group-head { display: flex; align-items: baseline; gap: 12px; flex-wrap: wrap; padding-bottom: 10px; margin-bottom: 16px; border-bottom: 2px solid; }
+  .card-group.g1 .card-group-head { border-color: var(--g1-border); }
+  .card-group.g2 .card-group-head { border-color: var(--g2-border); }
+  .card-group.g3 .card-group-head { border-color: var(--g3-border); }
+  .card-group.g4 .card-group-head { border-color: var(--g4-border); }
+  .card-group.g5 .card-group-head { border-color: var(--g5-border); }
+  .card-group-head .code {
+    font-family: -apple-system, "PingFang TC", sans-serif;
+    font-size: 12px; font-weight: 700;
+    padding: 3px 10px; border-radius: 5px; letter-spacing: .1em;
+  }
+  .card-group.g1 .code { background: var(--g1-bg); color: var(--g1-text); }
+  .card-group.g2 .code { background: var(--g2-bg); color: var(--g2-text); }
+  .card-group.g3 .code { background: var(--g3-bg); color: var(--g3-text); }
+  .card-group.g4 .code { background: var(--g4-bg); color: var(--g4-text); }
+  .card-group.g5 .code { background: var(--g5-bg); color: var(--g5-text); }
+  .card-group-head h3 { margin: 0; font-size: 1.25rem; }
+  .card-group.g1 h3 { color: var(--g1-text); }
+  .card-group.g2 h3 { color: var(--g2-text); }
+  .card-group.g3 h3 { color: var(--g3-text); }
+  .card-group.g4 h3 { color: var(--g4-text); }
+  .card-group.g5 h3 { color: var(--g5-text); }
+  .card-group-head .side { font-family: -apple-system, "PingFang TC", sans-serif; font-size: 13px; color: var(--ink-soft); letter-spacing: .05em; }
+
+  .cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+  @media (max-width: 820px) { .cards { grid-template-columns: 1fr; } }
+  .card { background: var(--paper); border: 1px solid; border-radius: 10px; padding: 20px 22px; }
+  .card-group.g1 .card { border-color: var(--g1-border); }
+  .card-group.g2 .card { border-color: var(--g2-border); }
+  .card-group.g3 .card { border-color: var(--g3-border); }
+  .card-group.g4 .card { border-color: var(--g4-border); }
+  .card-group.g5 .card { border-color: var(--g5-border); }
+  .card .card-id { font-family: -apple-system, "PingFang TC", sans-serif; font-size: 12px; font-weight: 700; letter-spacing: .15em; margin-bottom: 4px; }
+  .card-group.g1 .card-id { color: var(--g1-text); }
+  .card-group.g2 .card-id { color: var(--g2-text); }
+  .card-group.g3 .card-id { color: var(--g3-text); }
+  .card-group.g4 .card-id { color: var(--g4-text); }
+  .card-group.g5 .card-id { color: var(--g5-text); }
+  .card .card-name { font-size: 1.1rem; font-weight: 700; margin: 0 0 4px; line-height: 1.4; }
+  .card-group.g1 .card-name { color: var(--g1-text); }
+  .card-group.g2 .card-name { color: var(--g2-text); }
+  .card-group.g3 .card-name { color: var(--g3-text); }
+  .card-group.g4 .card-name { color: var(--g4-text); }
+  .card-group.g5 .card-name { color: var(--g5-text); }
+  .card .card-orig { font-family: -apple-system, "PingFang TC", sans-serif; font-size: 12px; color: var(--ink-soft); margin-bottom: 10px; letter-spacing: .04em; }
+  .card .card-def { font-size: .93rem; color: var(--ink); line-height: 1.75; margin: 0; }
+
+  .numbered { counter-reset: item; list-style: none; padding: 0; margin: 20px 0; }
+  .numbered li {
+    counter-increment: item; position: relative;
+    padding: 16px 20px 16px 60px; margin-bottom: 12px;
+    background: var(--paper); border: 1px solid var(--line);
+    border-radius: 10px; font-size: .97rem; line-height: 1.8;
+  }
+  .numbered li::before {
+    content: counter(item); position: absolute; left: 18px; top: 14px;
+    font-family: -apple-system, "PingFang TC", sans-serif;
+    font-size: 1.2rem; font-weight: 700; color: var(--brick);
+  }
+  .numbered li strong { display: block; font-size: 1.05rem; margin-bottom: 4px; color: var(--dark); }
+
+  .origin-box { background: var(--paper); border: 1px solid var(--line); border-radius: 14px; padding: 28px 32px; margin: 24px 0; }
+  .origin-box h4 { margin: 0 0 14px; font-size: 1.1rem; color: var(--brick); font-weight: 700; }
+  .origin-box ul { margin: 0; padding-left: 22px; font-size: .97rem; line-height: 1.9; }
+  .origin-box ul li { margin-bottom: 8px; }
+  .origin-box .arrow { display: block; text-align: center; color: var(--accent); font-size: 1.4rem; margin: 14px 0; font-weight: 700; }
+  .origin-box .result { color: var(--brick); font-weight: 700; text-align: center; font-size: 1.05rem; padding: 10px 0 0; }
+
+  .term-card { background: var(--bg-alt); border-radius: 10px; padding: 18px 22px; margin: 20px 0; }
+  .term-card h4 { margin: 0 0 6px; font-size: 1.02rem; color: var(--brick); }
+  .term-card p { margin: 0; font-size: .94rem; color: var(--ink); line-height: 1.75; }
+
+  .principle { border-left: 4px solid var(--accent); padding: 4px 0 4px 20px; margin: 20px 0; }
+  .principle h4 { margin: 0 0 6px; color: var(--dark); font-size: 1.08rem; font-weight: 700; }
+  .principle p { font-size: .95rem; line-height: 1.8; margin: 0; color: var(--ink-soft); }
+  .principle strong { color: var(--brick); }
+
+  .callout {
+    background: var(--dark); color: #FFE4B8;
+    padding: 24px 28px; border-radius: 12px; margin-top: 22px;
+    font-size: 1.05rem; line-height: 2;
+    font-family: "Noto Serif TC", serif; text-align: center;
+  }
+
+  .page-nav { margin-top: 40px; padding: 24px 0 0; text-align: center; }
+  .page-nav a {
+    display: inline-block; color: var(--dark); font-weight: 700;
+    text-decoration: none; font-size: .95rem;
+    padding: 10px 20px; margin: 6px;
+    border: 1px solid var(--line); border-radius: 22px;
+    transition: all .2s;
+    font-family: -apple-system, "PingFang TC", sans-serif;
+  }
+  .page-nav a:hover { background: var(--dark); color: #FFF8F0; border-color: var(--dark); }
+
+  footer {
+    background: var(--dark); color: #FFF4E5;
+    padding: 40px 24px; text-align: center;
+    font-size: 14px; letter-spacing: .08em;
+    font-family: -apple-system, "PingFang TC", sans-serif;
+  }
+  footer a { color: #FFE4B8; text-decoration: none; font-weight: 700; }
+  footer a:hover { text-decoration: underline; }
+  footer .footer-mark { display: inline-block; width: 40px; height: 2px; background: #FFE4B8; margin-bottom: 14px; }
 </style>
 </head>
 <body>
-<div class="box">
-  <span class="tag">框架說明 · 整理中</span>
-  <h1>旅學堂 培力卡介紹</h1>
-  <p>培力卡的完整框架說明（五階段 × 十五動作、IOOVI 對應、設計邏輯）正在整理中，預計近期補上。</p>
-  <p>在此之前，可以先參考<a href="../chain/">成果事件鏈詳細記錄</a>，裡面有完整的培力卡框架與 17 位人物卡。</p>
-  <p style="margin-top: 32px;"><a href="../">← 回首頁</a></p>
-</div>
+
+<section class="hero">
+  <div class="wrap">
+    <span class="hero-mark"></span>
+    <p class="eyebrow">旅學堂 培力卡</p>
+    <h1>社會影響力框架</h1>
+    <p class="subtitle">社區陪伴工作的 15 個動作</p>
+    <div class="hero-quote">
+      <p>「在社區營造與地方創生的現場，我們時常做著難以言說的事——接住一個猶豫的人、陪一個反覆的過程、把一個角色交出去、讓影響力擴出圈外。」</p>
+      <p>這些動作每天都在發生，但很少被清楚命名。陪力卡把它們整理成 15 張固定的卡，讓看不見的陪伴工作，被看見、被盤點、被傳承。</p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <p class="eyebrow"><span class="num">01</span> 為什麼社會影響力需要被看見</p>
+    <h2>ESG 三部曲，最難的那一個 S</h2>
+    <p class="lead">
+      近年所有組織都要寫 ESG、寫永續報告書。但 E、S、G 三個面向裡，社會影響力（Social）一直是最難的那一塊。
+    </p>
+
+    <div class="esg-grid">
+      <div class="esg-card">
+        <span class="tag">E · Environment</span>
+        <h4>環境</h4>
+        <p>碳權、碳稅、碳排放——全部已數位化、標準化，用數字說話。</p>
+      </div>
+      <div class="esg-card">
+        <span class="tag">G · Governance</span>
+        <h4>治理</h4>
+        <p>公司治理本來就有既有制度與系統，流程清楚、指標明確。</p>
+      </div>
+      <div class="esg-card highlight">
+        <span class="tag">S · Social</span>
+        <h4>社會影響力</h4>
+        <p>反而是這一塊——抽象、難以結構化、語意多變，過去非常難評估。</p>
+      </div>
+    </div>
+
+    <h3>AI 時代的契機</h3>
+    <p>
+      AI 時代剛好為 S 帶來新的可能：它能把<strong>抽象、難以結構化的語意與概念</strong>整理出來。那些訪談裡零散的故事、那些「說不清楚但真的發生了」的改變，可以變成被閱讀、被分析、被累積的結構。
+    </p>
+    <p>
+      旅學堂的培力卡，就是在這個時代脈絡下長出來的工具——一個讓社會影響力「被看見」的框架。
+    </p>
+  </div>
+</section>
+
+<section class="bg-alt">
+  <div class="wrap">
+    <p class="eyebrow"><span class="num">02</span> 這個框架不只給旅學堂</p>
+    <h2>所有做陪伴工作的組織，都可以用這套卡盤點自己</h2>
+    <p class="lead">
+      旅學堂是專門做培力與賦能的組織，但這個框架不是旅學堂專屬的。
+    </p>
+    <p>
+      任何做社區陪伴、培力賦能、助人工作的組織——包括 <strong>DEI（多元共融）組織、工藝傳承組織、社福機構、地方創生團隊</strong>——都可以拿這 15 張卡，盤點自己的工作。
+    </p>
+    <div class="callout">
+      這 15 張卡，你做了哪幾張？<br>
+      漏了哪幾張？<br>
+      哪幾張做得特別好？<br>
+      哪幾張一直沒進入你的工具箱？
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <p class="eyebrow"><span class="num">03</span> 這個框架怎麼做出來的</p>
+    <h2>Vicky 的五年累積 × 15 位利害關係人訪談 × AI 統整</h2>
+
+    <p class="lead">
+      這套培力卡不是隨便講一講就說完。它是 Vicky 用整整五年的旅學堂經驗，加上 2026 年新做的深度訪談，再用 AI 統整出來的。
+    </p>
+
+    <div class="origin-box">
+      <h4>Vicky 收集整理的素材</h4>
+      <ul>
+        <li>旅學堂成立至今五年的所有企劃、報告、會議記錄</li>
+        <li>學員、員工、顧客的反饋與心路歷程</li>
+        <li>2026 年的新企劃與實際成績（比賽、政府輔導、產業表現）</li>
+        <li>各界專業人士建議：商業顧問、社會影響力顧問、老師教授、政府輔導官員</li>
+        <li>現在的產業環境、組織運作模式、成員狀況、團隊會議心得</li>
+        <li><strong>2026 年針對 15 位利害關係人的詳細深度訪問</strong></li>
+      </ul>
+      <div class="arrow">↓</div>
+      <div class="result">用 AI 分析、對位、歸納　→　跑出這個培力卡框架</div>
+    </div>
+
+    <div class="term-card">
+      <h4>什麼是「利害關係人」？</h4>
+      <p>
+        Stakeholder，指跟組織運作有利益或關係連動的所有相關人士。以旅學堂為例，包括：<strong>核心團隊、女性導覽員、她們的家人、消費者、合作店家、合作夥伴（新北捷運、淡海輕軌）、學校老師與學生、助學青年</strong>等。每一個利害關係人，都是組織影響力發生的節點。
+      </p>
+    </div>
+
+    <p>
+      這樣的資料量非常龐大、非常雜亂，各方意見又要被統整。如果要讓人類自己做，會是非常辛苦的事——光是把 15 份逐字稿讀完、對位、交叉比對，就要耗掉好幾個禮拜。
+    </p>
+    <p>
+      <strong>Vicky 用心的資料收集與經營，加上 AI 對大量資料的統整能力</strong>，才讓這套培力卡能夠成形。這本身就是一個示範：AI 時代的組織如何把「看不見的陪伴工作」整理成可被說明、可被傳承的方法論。
+    </p>
+  </div>
+</section>
+
+<section class="bg-alt">
+  <div class="wrap">
+    <p class="eyebrow"><span class="num">04</span> 為什麼叫「陪力卡」</p>
+    <h2>陪 ＋ 力 ＝ 軟硬兩端的交織</h2>
+    <p class="lead">
+      <strong>陪力＝陪伴＋讓力量長出來</strong>
+    </p>
+    <p>
+      <strong>「陪」</strong>對應前兩類（接住、共學）的情緒和關係面：不是領、不是拉、不是推，是陪在旁邊。
+    </p>
+    <p>
+      <strong>「力」</strong>對應後三類（做事、給角色、擴散）的能力、位置、影響面：讓對方長出自己的力量，而不是依賴陪伴者。
+    </p>
+    <p>
+      「陪力」這個詞同時涵蓋了軟的那一端（情緒、關係、接住）和硬的那一端（能力、位置、影響力）。社區陪伴不是單純的情感支持，也不是單純的技能培訓——是這兩件事的交織。
+    </p>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <p class="eyebrow"><span class="num">05</span> 陪力歷程的五個面向</p>
+    <h2>接住 → 共學 → 做事 → 給角色 → 擴散</h2>
+    <p class="lead">
+      這五類不是彼此獨立的分類，而是一條有先後的歷程：前兩類是情緒和關係的底，中間兩類是能力和位置的站穩，最後一類是影響力的外延。
+    </p>
+
+    <div class="phases-flow">
+      <div class="phase-pill g1"><div class="p-code">G1</div><div class="p-name">接住</div><div class="p-side">激勵面</div></div>
+      <div class="phase-pill g2"><div class="p-code">G2</div><div class="p-name">共學</div><div class="p-side">陪伴面</div></div>
+      <div class="phase-pill g3"><div class="p-code">G3</div><div class="p-name">做事</div><div class="p-side">賦能面</div></div>
+      <div class="phase-pill g4"><div class="p-code">G4</div><div class="p-name">給角色</div><div class="p-side">賦權面</div></div>
+      <div class="phase-pill g5"><div class="p-code">G5</div><div class="p-name">擴散</div><div class="p-side">影響面</div></div>
+    </div>
+
+    <ul class="numbered">
+      <li><strong>G1 接住（激勵面）</strong>建立關係、給安全感，讓人願意靠近並留下。</li>
+      <li><strong>G2 共學（陪伴面）</strong>讓對方長出自己的學習節奏，不是被推著走。</li>
+      <li><strong>G3 做事（賦能面）</strong>給能力、給工具、給機會，讓做事穩定且被看見。</li>
+      <li><strong>G4 給角色（賦權面）</strong>給位置、給職責、給決定權。</li>
+      <li><strong>G5 擴散（影響面）</strong>個人的力量向組織、社會擴出去，並在離開後仍延續關係。</li>
+    </ul>
+
+    <p>
+      少了底，上面就長不起來；有了底但沒站穩的位置，力量就停在個人身上擴不出去。
+    </p>
+  </div>
+</section>
+
+<section class="bg-alt">
+  <div class="wrap">
+    <p class="eyebrow"><span class="num">06</span> 15 張卡：完整展開</p>
+    <h2>每一張卡，都是一個陪伴者做的動作</h2>
+    <p class="lead">
+      每張卡有<strong>口語卡名</strong>（白話好懂，對外用）與<strong>原始分析名</strong>（顆粒度清楚，內部用），加上定義：陪伴者做的動作是什麼。
+    </p>
+
+    <div class="card-group g1">
+      <div class="card-group-head">
+        <span class="code">G1</span><h3>接住</h3>
+        <span class="side">激勵面 · 建立關係、給安全感</span>
+      </div>
+      <div class="cards">
+        <div class="card"><div class="card-id">G1-1</div><div class="card-name">低門檻進場</div><div class="card-orig">原始名：低壓進場</div><p class="card-def">不要求先證明自己就能來，篩選放在陪伴裡，不放在門口。</p></div>
+        <div class="card"><div class="card-id">G1-2</div><div class="card-name">記得你</div><div class="card-orig">原始名：關係識別</div><p class="card-def">把一次性的接觸變成長期關係：記住人、回訪人、持續聯繫。</p></div>
+        <div class="card"><div class="card-id">G1-3</div><div class="card-name">可以做不好</div><div class="card-orig">原始名：安全承諾</div><p class="card-def">營造不評價、不比較、允許反覆的氛圍，讓人感覺做不好也沒關係。</p></div>
+      </div>
+    </div>
+
+    <div class="card-group g2">
+      <div class="card-group-head">
+        <span class="code">G2</span><h3>共學</h3>
+        <span class="side">陪伴面 · 讓對方長出自己的學習節奏</span>
+      </div>
+      <div class="cards">
+        <div class="card"><div class="card-id">G2-1</div><div class="card-name">配合你的節奏</div><div class="card-orig">原始名：節奏陪跑</div><p class="card-def">允許反覆、暫停、繞路，不用統一進度推著走。</p></div>
+        <div class="card"><div class="card-id">G2-2</div><div class="card-name">互為師徒</div><div class="card-orig">原始名：共學互惠</div><p class="card-def">讓參與者互相學、互相帶、互相補位，不只從陪伴者身上學。</p></div>
+        <div class="card"><div class="card-id">G2-3</div><div class="card-name">不給答案</div><div class="card-orig">原始名：真實對話</div><p class="card-def">用提問代替評價、用分享代替指導，讓對話本身長出新的視角。</p></div>
+      </div>
+    </div>
+
+    <div class="card-group g3">
+      <div class="card-group-head">
+        <span class="code">G3</span><h3>做事</h3>
+        <span class="side">賦能面 · 給能力、給工具、給機會</span>
+      </div>
+      <div class="cards">
+        <div class="card"><div class="card-id">G3-1</div><div class="card-name">真的上場</div><div class="card-orig">原始名：真實現場</div><p class="card-def">把人從旁觀帶到有真實回饋的現場：真客人、真情境、真結果。</p></div>
+        <div class="card"><div class="card-id">G3-2</div><div class="card-name">交給你負責</div><div class="card-orig">原始名：任務授予</div><p class="card-def">把有期限、有對象、會被檢視的真實任務交給對方，責任變具體。</p></div>
+        <div class="card"><div class="card-id">G3-3</div><div class="card-name">公共可見</div><div class="card-orig">原始名：行動轉化</div><p class="card-def">把能力、作品、角色推到公共場域並讓可見性持續：初次曝光 → 持續中介 → 沉澱累積。</p></div>
+      </div>
+    </div>
+
+    <div class="card-group g4">
+      <div class="card-group-head">
+        <span class="code">G4</span><h3>給角色</h3>
+        <span class="side">賦權面 · 給位置、給職責、給決定權</span>
+      </div>
+      <div class="cards">
+        <div class="card"><div class="card-id">G4-1</div><div class="card-name">給個正式身份</div><div class="card-orig">原始名：角色授權</div><p class="card-def">給對方一個有名字、有職責、對外可被介紹的角色（導覽員、PM、講師）。</p></div>
+        <div class="card"><div class="card-id">G4-2</div><div class="card-name">用你原本的專業</div><div class="card-orig">原始名：專業放大</div><p class="card-def">把對方原有的能力接到地方議題，從個人能力變成對公共有用的力量。</p></div>
+        <div class="card"><div class="card-id">G4-3</div><div class="card-name">回頭看自己走多遠</div><div class="card-orig">原始名：成就回看</div><p class="card-def">設計回看、肯定、慶祝的時刻，讓對方自己看見自己的改變與意義。</p></div>
+      </div>
+    </div>
+
+    <div class="card-group g5">
+      <div class="card-group-head">
+        <span class="code">G5</span><h3>擴散</h3>
+        <span class="side">影響面 · 力量向組織、社會擴出去</span>
+      </div>
+      <div class="cards">
+        <div class="card"><div class="card-id">G5-1</div><div class="card-name">牽線合作</div><div class="card-orig">原始名：夥伴共創</div><p class="card-def">把原本不相識的組織或夥伴搭起橋、促成合作，讓資源在節點間流動。</p></div>
+        <div class="card"><div class="card-id">G5-2</div><div class="card-name">寫下怎麼做</div><div class="card-orig">原始名：方法轉譯</div><p class="card-def">把做法整理成可對外說明、可被複製、可教學、可提案的方法語言。</p></div>
+        <div class="card"><div class="card-id">G5-3</div><div class="card-name">退場允許</div><div class="card-orig">原始名：好好離開</div><p class="card-def">讓成員的離開成為被允許、被祝福、被接住的事：離開前的對話、離開時的歡送、離開後的關係維持、再回來時的自然接住。</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <p class="eyebrow"><span class="num">07</span> 怎麼用這套卡盤點自己</p>
+    <h2>一套四步驟的盤點方法</h2>
+
+    <ul class="numbered">
+      <li><strong>快速掃描</strong>拿著 15 張卡，一張一張問自己：「這件事我最近三個月做過嗎？」用三個記號標記：✓ 常做、△ 偶爾做、✗ 幾乎沒做。</li>
+      <li><strong>看分佈</strong>掃完後看五大類的分佈——哪一類最多 ✓？那是你的重心。哪一類最多 ✗？那可能是陪伴系統的缺口，不是沒能力做，是沒意識到要做。</li>
+      <li><strong>針對缺口提問</strong>對每一張 ✗ 的卡問：為什麼沒做？不做會有什麼影響？如果要開始做，第一步會是什麼？</li>
+      <li><strong>找一張來行動</strong>從 ✗ 的卡裡挑一張就好——最有感的、最容易開始的、最想補上的，當作接下來三個月的行動焦點。不要同時改五件事。</li>
+    </ul>
+  </div>
+</section>
+
+<section class="bg-alt">
+  <div class="wrap">
+    <p class="eyebrow"><span class="num">08</span> 使用這套卡的四個原則</p>
+    <h2>原則是工具的使用說明書</h2>
+
+    <div class="principle">
+      <h4>原則 1　對內用原始名，對外用口語名</h4>
+      <p>原始名（低壓進場、關係識別、專業放大）語感穩定、顆粒度清楚，適合編碼、統計、內部分析。口語名（低門檻進場、記得你、用你原本的專業）白話好懂，適合訪談、簡報、對外介紹。<strong>兩套並存，分場合用。</strong></p>
+    </div>
+
+    <div class="principle">
+      <h4>原則 2　卡是動作，不是結果</h4>
+      <p>陪力卡描述的是<strong>陪伴者做的動作</strong>，不是被陪伴者身上長出的結果。例如「社交門檻降低」是結果（被陪伴者身上的事），「低門檻進場」是動作（陪伴者做的事）。兩者不能混用。</p>
+    </div>
+
+    <div class="principle">
+      <h4>原則 3　有些觀察不是動作，是面向</h4>
+      <p>遇到某個重要內容找不到對應的卡，通常兩種可能：(a) 陪力卡沒蓋到的動作，值得補卡；(b) 這不是動作而是觀察面向，例如「孩子跟著認識地方」是外溢效果，應標記為「關係網端」。</p>
+    </div>
+
+    <div class="principle">
+      <h4>原則 4　15 張不是終點，是起點</h4>
+      <p>這套卡涵蓋社區陪伴工作的大部分動作，但不可能涵蓋全部。如果你發現一個重要、反覆發生的動作，但 15 張卡都蓋不到——這可能就是你的現場特色，值得發展成新的卡。</p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <p class="eyebrow"><span class="num">09</span> 限制與延伸</p>
+    <h2>誠實說，這套卡有三個限制</h2>
+
+    <div class="principle">
+      <h4>限制 1　從特定組織經驗提煉</h4>
+      <p>原始素材來自「長期陪伴、讓人在地方長出角色」為核心的組織。如果你的工作偏短期培力、議題倡議、或專業技能培訓，某些類別可能不夠用或用不上。</p>
+    </div>
+
+    <div class="principle">
+      <h4>限制 2　偏陪伴者視角</h4>
+      <p>這套卡從「陪伴者做什麼」的角度寫，所以被陪伴者的主動性、成員橫向連結、社群自身的生成動力，蓋得比較薄。如果你的核心是「讓社群自己長出來」，你可能會覺得這套卡太「上對下」。</p>
+    </div>
+
+    <div class="principle">
+      <h4>限制 3　G5-3 退場允許還在發展中</h4>
+      <p>前 14 張卡有比較豐厚的實務案例支撐，但「讓人好好離開」這件事，在許多陪伴型組織裡常常是做了但沒意識、沒被記錄、也沒被命名的動作。這張卡的內涵還在持續補強。</p>
+    </div>
+  </div>
+</section>
+
+<section class="bg-alt">
+  <div class="wrap" style="text-align:center;">
+    <p class="eyebrow"><span class="num">10</span> 下一步</p>
+    <h2>把框架連到故事，把故事連到影響力</h2>
+    <p class="lead">
+      培力卡是方法論的起點，真正讓它有血有肉的，是 15 位利害關係人的故事，以及 2026 年的影響力報告。
+    </p>
+    <div class="page-nav">
+      <a href="../chain/">成果事件鏈 · 詳細記錄 →</a>
+      <a href="../impact/">影響力報告 · 詳細版 →</a>
+      <a href="../">回首頁</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-mark"></div>
+  <p>旅學堂 培力卡｜社會影響力框架 · 2026-04-23</p>
+  <p>本站為內部工作版，校稿完成前請勿對外分享 · <a href="https://github.com/Jiang-Yude/lxuetang-system">GitHub Repo</a></p>
+</footer>
+
 </body>
 </html>
