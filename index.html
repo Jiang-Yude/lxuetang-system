@@ -26,41 +26,52 @@
     background: var(--bg);
     color: var(--ink);
     margin: 0;
-    padding: 56px 20px 48px;
+    padding: 0;
     line-height: 1.8;
     -webkit-font-smoothing: antialiased;
   }
-  .wrap { max-width: 900px; margin: 0 auto; }
+  .wrap { max-width: 900px; margin: 0 auto; padding: 0 20px; }
+  .content { padding: 56px 20px 48px; }
 
-  header {
+  .hero {
+    background: linear-gradient(135deg, var(--dark) 0%, var(--dark-soft) 100%);
+    color: #FFFFFF;
+    padding: 80px 20px 72px;
     text-align: center;
-    margin-bottom: 56px;
-    padding-bottom: 32px;
-    border-bottom: 2px solid rgba(212,138,90,0.35);
+    position: relative;
   }
-  h1 {
-    font-size: 2.1rem;
-    margin: 0 0 14px;
-    color: var(--dark);
+  .hero-mark {
+    display: inline-block;
+    width: 52px;
+    height: 3px;
+    background: #FFE4B8;
+    margin-bottom: 22px;
+  }
+  .hero h1 {
+    font-size: clamp(2rem, 4.5vw, 2.6rem);
+    margin: 0 0 16px;
+    color: #FFFFFF;
     letter-spacing: 0.02em;
     font-weight: 700;
   }
   .subtitle {
-    color: var(--ink-soft);
-    font-size: 1rem;
-    margin: 0 0 20px;
-    letter-spacing: .06em;
+    color: #FFE4B8;
+    font-size: 1.05rem;
+    margin: 0 0 28px;
+    letter-spacing: .1em;
+    font-family: -apple-system, "PingFang TC", sans-serif;
+    font-weight: 500;
   }
   .intro {
     font-size: 1rem;
-    color: var(--ink);
+    color: #FFF4E5;
     max-width: 680px;
     margin: 0 auto;
     text-align: left;
     line-height: 1.9;
   }
   .intro p { margin: 0 0 12px; }
-  .intro strong { color: var(--dark-soft); font-weight: 700; }
+  .intro strong { color: #FFE4B8; font-weight: 700; }
 
   h2 {
     font-size: 1.3rem;
@@ -150,20 +161,24 @@
 </style>
 </head>
 <body>
-<div class="wrap">
 
-<header>
-  <h1>旅學堂 培力系統</h1>
-  <p class="subtitle">培力卡框架 · 成果事件鏈 · 影響力報告</p>
-  <div class="intro">
-    <p>
-      旅學堂以<strong>「培力卡」</strong>為核心方法論，在淡水陪伴女力導覽員、社區夥伴、消費者、家人、合作單位，透過五階段 × 十五動作的框架，把日常活動轉化為可被觀察、可被追蹤的社會影響力。
-    </p>
-    <p>
-      本站整合三個層次：<strong>培力卡框架</strong>說明方法論、<strong>成果事件鏈</strong>以 15 位受訪者原話記錄每一條改變、<strong>影響力報告</strong>則是對外交付的整合成果。
-    </p>
+<section class="hero">
+  <div class="wrap">
+    <span class="hero-mark"></span>
+    <h1>旅學堂 培力系統</h1>
+    <p class="subtitle">培力卡框架 · 成果事件鏈 · 影響力報告</p>
+    <div class="intro">
+      <p>
+        旅學堂以<strong>「培力卡」</strong>為核心方法論，在淡水陪伴女力導覽員、社區夥伴、消費者、家人、合作單位，透過五階段 × 十五動作的框架，把日常活動轉化為可被觀察、可被追蹤的社會影響力。
+      </p>
+      <p>
+        本站整合三個層次：<strong>培力卡框架</strong>說明方法論、<strong>成果事件鏈</strong>以 15 位受訪者原話記錄每一條改變、<strong>影響力報告</strong>則是對外交付的整合成果。
+      </p>
+    </div>
   </div>
-</header>
+</section>
+
+<div class="wrap content">
 
 <h2>培力卡框架</h2>
 
