@@ -1,0 +1,896 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow, noarchive, nosnippet">
+<title>旅學堂 · 2026 影響力報告</title>
+<style>
+  /* ══ 配色 · Logo 磚橘紅 × 淡粉奶底 (官網配色) ══ */
+  :root {
+    --bg:        #FBEEE6;   /* 主背景：淡粉奶 */
+    --bg-alt:    #F5DDD0;   /* 副背景：稍深粉奶 */
+    --paper:     #FFFAF5;   /* 卡片底：近白 */
+    --dark:      #B8523F;   /* 陶土紅，低飽和版 Logo 紅 */
+    --dark-soft: #9A3F2B;   /* 深陶土紅 */
+    --accent:    #D48A5A;   /* 暖橘棕（淺底強調）*/
+    --brick:     #8A2F15;   /* 深磚紅，淺底 accent */
+    --brick-soft:#F5C8A8;   /* 奶橘，紅底裝飾 */
+    --ink:       #2C2824;   /* 主文字：炭黑 */
+    --ink-soft:  #6B5F56;   /* 副文字：暖灰 */
+    --line:      #EAD2C4;   /* 粉灰線條 */
+    --line-soft: #F3E0D2;   /* 極淡粉灰 */
+    --gold-soft: #FDECD4;   /* 紅底上淺文字 */
+  }
+
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; padding: 0;
+    font-family: "Noto Serif TC", "PingFang TC", -apple-system, "Noto Sans TC", serif;
+    background: var(--bg); color: var(--ink);
+    line-height: 1.8; font-size: 21px;
+    -webkit-font-smoothing: antialiased;
+  }
+  .wrap { max-width: 960px; margin: 0 auto; padding: 0 28px; }
+  @media (max-width: 640px) { .wrap { padding: 0 20px; } }
+
+  /* ── 共通小元件 ── */
+  .eyebrow {
+    font-size: 19px; letter-spacing: .2em;
+    color: var(--accent); font-weight: 500;
+    margin: 0 0 18px; text-transform: uppercase;
+    font-family: -apple-system, "PingFang TC", sans-serif;
+  }
+  .eyebrow .num { color: var(--brick); margin-right: 10px; font-weight: 600; }
+
+  h1 { font-size: clamp(36px, 5vw, 56px); font-weight: 700; margin: 0 0 20px; line-height: 1.25; letter-spacing: -0.01em; }
+  h2 { font-size: clamp(28px, 3.5vw, 40px); font-weight: 700; margin: 0 0 14px; line-height: 1.3; letter-spacing: -0.01em; }
+  h3 { font-size: 23px; font-weight: 600; margin: 0 0 10px; }
+  h4 { font-size: 20px; font-weight: 600; margin: 0 0 6px; color: var(--ink); letter-spacing: .02em; }
+  p  { margin: 0 0 14px; }
+  .lead { font-size: 23px; color: var(--ink-soft); line-height: 1.85; margin-bottom: 24px; }
+
+  section { padding: 80px 0; border-bottom: 1px solid var(--line-soft); }
+  section:last-of-type { border-bottom: none; }
+  @media (max-width: 640px) { section { padding: 56px 0; } }
+
+  .section-dark { background: var(--dark); color: #FFFCF4; border-bottom: none; }
+  .section-dark .eyebrow { color: #FFE4B8; font-weight: 600; }
+  .section-dark .eyebrow .num { color: #FFF0CC; }
+  .section-dark h1, .section-dark h2, .section-dark h3 { color: #FFFFFF; }
+  .section-dark .lead { color: #FFF4E5; font-weight: 400; }
+  .section-dark p { color: #FFF4E5; }
+
+  /* ── Hero ── */
+  .hero { background: var(--dark); color: #FFFFFF; padding: 80px 0 90px; border-bottom: none; }
+  .hero .logo { width: 120px; margin-bottom: 36px; filter: brightness(1.15); }
+  .hero .hero-mark { display: inline-block; width: 60px; height: 3px; background: #FFE4B8; margin-bottom: 22px; }
+  .hero-eyebrow { font-size: 18px; letter-spacing: .2em; color: #FFE4B8; font-weight: 600; margin: 0 0 18px; font-family: -apple-system, "PingFang TC", sans-serif; }
+  .hero h1 { color: #FFFFFF; font-size: clamp(42px, 6vw, 68px); letter-spacing: -0.02em; font-weight: 700; }
+  .hero .tag { font-size: clamp(21px, 2vw, 24px); color: #FFF4E5; font-weight: 500; max-width: 620px; line-height: 1.85; margin-top: 24px; }
+  .hero-meta { margin-top: 40px; padding-top: 24px; border-top: 1px solid rgba(255,252,244,0.3); font-size: 19px; letter-spacing: .12em; color: #FFE4B8; font-weight: 500; font-family: -apple-system, "PingFang TC", sans-serif; }
+
+  /* ── 引文 ── */
+  blockquote {
+    margin: 24px 0; padding: 18px 24px;
+    border-left: 3px solid var(--brick);
+    background: var(--paper);
+    font-size: 24px; font-style: italic; color: var(--dark-soft);
+    line-height: 1.75; border-radius: 0 8px 8px 0;
+  }
+  blockquote .cite { display: block; margin-top: 10px; font-size: 18px; color: var(--ink-soft); font-style: normal; }
+
+  /* ── 兩欄 ── */
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin: 24px 0; }
+  @media (max-width: 680px) { .two-col { grid-template-columns: 1fr; } }
+  .col-card { background: var(--paper); border: 1px solid var(--line); border-radius: 12px; padding: 22px 24px; }
+  .col-card h4 { color: var(--brick); margin-bottom: 10px; letter-spacing: .04em; }
+  .col-card .sub { font-size: 18px; color: var(--ink-soft); margin-bottom: 12px; }
+
+  /* ── 五軸線（橫列式）── */
+  .axes { display: flex; flex-direction: column; gap: 10px; margin: 24px 0 10px; }
+  .axis {
+    background: var(--paper); border: 1px solid var(--line);
+    border-left: 5px solid; border-radius: 10px;
+    padding: 22px 28px; transition: transform .15s;
+    display: grid; grid-template-columns: 220px 1fr; gap: 28px; align-items: center;
+  }
+  @media (max-width: 680px) { .axis { grid-template-columns: 1fr; gap: 10px; padding: 18px 22px; } }
+  .axis:hover { transform: translateX(3px); }
+  .axis-left { display: flex; flex-direction: column; }
+  .axis .axis-num { font-size: 16px; letter-spacing: .15em; color: var(--accent); font-weight: 600; font-family: -apple-system, "PingFang TC", sans-serif; margin-bottom: 4px; }
+  .axis h4 { margin: 0; font-size: 24px; color: var(--dark); }
+  .axis p { font-size: 19px; line-height: 1.75; color: var(--ink-soft); margin: 0; }
+  .axis-1 { border-left-color: #8B4A6B; }
+  .axis-2 { border-left-color: #B57A3A; }
+  .axis-3 { border-left-color: #3E6A8C; }
+  .axis-4 { border-left-color: #5E4E8C; }
+  .axis-5 { border-left-color: #4F6B3A; }
+
+  /* ── 故事卡 ── */
+  .story { background: var(--paper); border: 1px solid var(--line); border-radius: 14px; padding: 30px 32px; margin-bottom: 20px; }
+  .story-head { display: flex; align-items: center; gap: 14px; margin-bottom: 16px; padding-bottom: 14px; border-bottom: 1px solid var(--line-soft); }
+  .story-avatar { width: 48px; height: 48px; border-radius: 50%; background: var(--brick); color: #FFFCF4; display: flex; align-items: center; justify-content: center; font-size: 23px; font-weight: 600; flex-shrink: 0; font-family: "Noto Serif TC", serif; }
+  .story-head h3 { margin: 0; font-size: 23px; color: var(--dark); }
+  .story-head .sub { font-size: 18px; color: var(--ink-soft); margin-top: 3px; }
+  .story-quote { font-size: 22px; color: var(--dark-soft); font-style: italic; padding: 14px 18px; background: var(--bg-alt); border-left: 3px solid var(--brick-soft); border-radius: 0 6px 6px 0; margin: 14px 0; line-height: 1.75; }
+  .story-body { font-size: 20px; line-height: 1.85; color: var(--ink); }
+  .story-tags { margin-top: 16px; padding-top: 14px; border-top: 1px solid var(--line-soft); display: flex; flex-wrap: wrap; gap: 6px; }
+  .story-tag { font-size: 18px; padding: 3px 10px; border-radius: 999px; background: var(--bg-alt); color: var(--dark-soft); border: 1px solid var(--line); font-family: -apple-system, "PingFang TC", sans-serif; }
+
+  /* ── 五階段 ── */
+  .phases-row { display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px; margin: 30px 0 20px; }
+  @media (max-width: 820px) { .phases-row { grid-template-columns: repeat(5, 1fr); gap: 6px; } }
+  @media (max-width: 560px) { .phases-row { grid-template-columns: repeat(2, 1fr); gap: 8px; } }
+  .phase-box { background: var(--paper); border: 1px solid var(--line); border-radius: 10px; padding: 18px 14px 14px; text-align: center; position: relative; display: flex; flex-direction: column; }
+  .phase-box .p-id { font-size: 18px; color: var(--accent); font-weight: 600; font-family: -apple-system, "PingFang TC", sans-serif; letter-spacing: .1em; }
+  .phase-box h4 { font-size: 23px; margin: 6px 0 4px; color: var(--dark); }
+  .phase-box .p-side { font-size: 18px; color: var(--ink-soft); letter-spacing: .08em; }
+  .phase-box .p-desc { font-size: 19px; color: var(--ink-soft); margin-top: 8px; line-height: 1.55; }
+  .phase-box .phase-cards { margin-top: 14px; padding-top: 12px; border-top: 1px solid var(--line-soft); display: flex; flex-direction: column; gap: 6px; text-align: left; }
+  .phase-box .pc { font-size: 16px; color: var(--dark-soft); line-height: 1.5; padding: 5px 8px; border-radius: 5px; background: var(--bg); }
+  .phase-box .pc-id { font-family: monospace; font-size: 14px; color: var(--accent); font-weight: 600; margin-right: 5px; }
+
+  /* ── 歷程：起點→終點 ── */
+  .journey { display: grid; grid-template-columns: 1fr 60px 1fr; align-items: center; gap: 14px; margin: 30px 0 10px; }
+  @media (max-width: 680px) { .journey { grid-template-columns: 1fr; } .journey .arrow { transform: rotate(90deg); margin: 0 auto; } }
+  .journey .jbox { border-radius: 12px; padding: 24px 28px; border: 1.5px solid; }
+  .journey .jbox.start { background: var(--dark-soft); color: #FFFFFF; border-color: rgba(255,255,255,0.35); }
+  .journey .jbox.end { background: var(--bg-alt); border-color: var(--line); color: var(--ink); }
+  .journey .jlabel { font-size: 18px; letter-spacing: .15em; font-weight: 600; margin-bottom: 6px; font-family: -apple-system, "PingFang TC", sans-serif; }
+  .journey .jbox.start .jlabel { color: #FFE4B8; }
+  .journey .jbox.end .jlabel { color: var(--brick); }
+  .journey .jbox h4 { font-size: 23px; margin-bottom: 10px; font-weight: 700; }
+  .journey .jbox.start h4 { color: #FFFFFF; }
+  .journey .jbox.end h4 { color: var(--dark); }
+  .journey .jbox ul { margin: 6px 0 0; padding-left: 18px; font-size: 18px; line-height: 1.75; font-weight: 500; }
+  .journey .jbox.start ul { color: #FFF4E5; }
+  .journey .jbox.end ul { color: var(--ink); }
+  .journey .arrow { font-size: 28px; color: #FFE4B8; text-align: center; font-weight: 700; }
+
+  /* ── 四欄標記簡介 ── */
+  .method-card { background: var(--paper); border: 1px solid var(--line); border-radius: 12px; padding: 24px 26px; margin-top: 22px; }
+  .method-card h4 { color: var(--brick); margin-bottom: 12px; }
+  .method-table { width: 100%; border-collapse: collapse; font-size: 18px; margin-top: 12px; }
+  .method-table th, .method-table td { padding: 10px 12px; text-align: left; border-bottom: 1px solid var(--line-soft); }
+  .method-table th { font-weight: 600; color: var(--dark); background: var(--bg-alt); font-family: -apple-system, "PingFang TC", sans-serif; font-size: 19px; letter-spacing: .04em; }
+  .method-table tr:last-child td { border-bottom: none; }
+  .method-table .dash { color: var(--brick); font-weight: 600; }
+  .method-table .highlight-row td { color: var(--brick); }
+
+  /* ── 成果事件鏈 ── */
+  .toc-group { background: var(--paper); border: 1px solid var(--line); border-radius: 12px; padding: 24px 26px; margin-bottom: 16px; }
+  .toc-group-title { display: flex; align-items: baseline; gap: 12px; margin-bottom: 6px; }
+  .toc-group-title h3 { font-size: 23px; color: var(--dark); margin: 0; }
+  .toc-group-title .tag { font-size: 18px; padding: 2px 10px; border-radius: 999px; letter-spacing: .06em; font-family: -apple-system, "PingFang TC", sans-serif; font-weight: 500; }
+  .toc-group-intro { font-size: 19px; color: var(--ink-soft); margin-bottom: 16px; line-height: 1.75; }
+  .toc-flow { display: flex; gap: 4px; align-items: stretch; overflow-x: auto; padding-bottom: 4px; }
+  .toc-col { flex: 1; min-width: 110px; background: var(--bg); border: 1px solid var(--line-soft); border-radius: 6px; padding: 10px 10px 12px; }
+  .toc-col-head { font-size: 18px; font-weight: 600; color: var(--accent); text-align: center; letter-spacing: .08em; margin-bottom: 8px; padding-bottom: 6px; border-bottom: 1px solid var(--line-soft); font-family: -apple-system, "PingFang TC", sans-serif; }
+  .toc-col-head small { display: block; font-size: 18px; color: var(--ink-soft); letter-spacing: 0; margin-top: 2px; font-weight: 400; }
+  .toc-chip { font-size: 18px; line-height: 1.55; padding: 5px 8px; border-radius: 4px; margin-bottom: 4px; background: var(--paper); color: var(--ink); border: 0.5px solid var(--line-soft); }
+  .toc-arrow { display: flex; align-items: center; color: var(--accent); font-size: 19px; padding: 0 1px; flex-shrink: 0; }
+
+  /* ── 2026 目標 ── */
+  .goal-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-top: 24px; }
+  @media (max-width: 680px) { .goal-grid { grid-template-columns: 1fr; } }
+  .goal-card { background: var(--paper); border: 1px solid var(--line); border-radius: 12px; padding: 22px 24px; }
+  .goal-card .gnum { font-size: 18px; letter-spacing: .15em; color: var(--brick); font-weight: 600; font-family: -apple-system, "PingFang TC", sans-serif; margin-bottom: 6px; }
+  .goal-card h4 { font-size: 21px; margin-bottom: 10px; color: var(--dark); line-height: 1.5; }
+  .goal-card p { font-size: 18px; color: var(--ink-soft); line-height: 1.75; margin: 0; }
+
+  /* ── 數字 ── */
+  .stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin: 30px 0 16px; }
+  @media (max-width: 680px) { .stats { grid-template-columns: repeat(2, 1fr); } }
+  .stat { text-align: center; padding: 22px 12px; background: var(--paper); border: 1px solid var(--line); border-radius: 10px; }
+  .stat-num { font-size: 34px; font-weight: 700; color: var(--brick); font-family: "Noto Serif TC", serif; line-height: 1; }
+  .stat-unit { font-size: 20px; color: var(--dark); margin-left: 4px; font-weight: 500; }
+  .stat-label { font-size: 19px; color: var(--ink-soft); margin-top: 6px; letter-spacing: .06em; font-family: -apple-system, "PingFang TC", sans-serif; }
+
+  /* ── CTA ── */
+  .cta-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px; margin-top: 28px; }
+  @media (max-width: 760px) { .cta-grid { grid-template-columns: 1fr; } }
+  .cta-card { background: rgba(255,252,244,0.12); border: 1.5px solid rgba(255,252,244,0.35); border-radius: 12px; padding: 22px 24px; }
+  .cta-card h4 { color: #FFFFFF; font-size: 21px; margin-bottom: 8px; font-weight: 700; }
+  .cta-card p { font-size: 18px; color: #FFF4E5; font-weight: 500; margin: 0; line-height: 1.85; }
+
+  /* ── Footer ── */
+  footer { background: var(--dark); color: #FFF4E5; padding: 40px 0 50px; text-align: center; font-size: 19px; letter-spacing: .1em; font-family: -apple-system, "PingFang TC", sans-serif; font-weight: 500; }
+  footer p { color: #FFF4E5; }
+  footer .footer-mark { display: inline-block; width: 40px; height: 2px; background: #FFE4B8; margin-bottom: 14px; }
+  footer strong { color: #FFFFFF; font-weight: 700; }
+
+  /* ── 個人成果回饋 · 陪力卡 ── */
+  .phases-legend { display:flex; gap:10px; flex-wrap:wrap; margin:26px 0 16px; }
+  .pl { display:flex; align-items:center; gap:8px; background:var(--paper); border:1px solid var(--line); border-radius:999px; padding:7px 14px; font-size:16px; cursor:pointer; transition:all .15s; font-family:-apple-system,"PingFang TC",sans-serif; }
+  .pl:hover { border-color:var(--dark); }
+  .pl.active { outline:1.5px solid currentColor; outline-offset:1px; }
+  .pl-dot { width:10px; height:10px; border-radius:50%; flex-shrink:0; }
+  .pl-name { font-weight:500; }
+  .pl-c { font-size:14px; color:var(--ink-soft); background:var(--bg); padding:1px 7px; border-radius:999px; }
+
+  .group-tabs { display:flex; gap:8px; flex-wrap:wrap; align-items:center; margin-bottom:18px; }
+  .gt-label { font-size:16px; color:var(--ink-soft); font-family:-apple-system,"PingFang TC",sans-serif; }
+  .gt { font-size:16px; padding:6px 14px; border-radius:999px; border:1px solid var(--line); background:var(--paper); color:var(--ink-soft); cursor:pointer; transition:all .15s; font-family:-apple-system,"PingFang TC",sans-serif; }
+  .gt:hover { border-color:var(--dark); }
+  .gt.active { background:var(--dark); color:#FFFAF5; border-color:var(--dark); }
+
+  .ec-results { font-size:16px; color:var(--ink-soft); margin-bottom:14px; }
+
+  .ec-grid { display:grid; grid-template-columns:1fr 1fr; gap:14px; }
+  @media (max-width: 900px) { .ec-grid { grid-template-columns:1fr; } }
+
+  .ec-card { background:var(--paper); border:1px solid var(--line); border-radius:12px; padding:18px 20px; display:flex; flex-direction:column; gap:12px; }
+  .ec-card.hidden { display:none; }
+  .ec-card-top { display:flex; align-items:flex-start; gap:12px; }
+  .ec-avatar { width:40px; height:40px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:17px; font-weight:600; flex-shrink:0; font-family:"Noto Serif TC",serif; }
+  .ec-meta { flex:1; min-width:0; }
+  .ec-name-row { display:flex; align-items:baseline; gap:8px; flex-wrap:wrap; }
+  .ec-fullname { font-size:19px; font-weight:600; color:var(--dark); }
+  .ec-group-badge { font-size:14px; font-weight:500; padding:2px 10px; border-radius:999px; border:1px solid; font-family:-apple-system,"PingFang TC",sans-serif; }
+  .ec-role { font-size:15px; color:var(--ink-soft); margin-top:3px; line-height:1.55; }
+  .ec-story { font-size:17px; color:var(--ink); line-height:1.85; margin:0; }
+  .ec-origins { display:grid; grid-template-columns:1fr 1fr; gap:8px; }
+  @media (max-width: 520px) { .ec-origins { grid-template-columns:1fr; } }
+  .ec-origin { border-radius:8px; padding:10px 12px; border:1px solid; transition:opacity .2s; }
+  .ec-origin-top { display:flex; justify-content:space-between; align-items:baseline; gap:6px; }
+  .ec-origin-name { font-size:16px; font-weight:600; }
+  .ec-origin-id { font-size:14px; opacity:.65; font-family:monospace; }
+  .ec-origin-term { font-size:14px; font-weight:500; opacity:.75; margin-top:2px; }
+  .ec-origin-desc { font-size:15px; line-height:1.65; opacity:.85; margin-top:4px; }
+</style>
+</head>
+<body>
+
+<!-- ══════════════ Hero ══════════════ -->
+<section class="hero">
+  <div class="wrap">
+    <img class="logo" src="logo.webp" alt="旅學堂 Tamsui Traveler">
+    <div class="hero-mark"></div>
+    <p class="hero-eyebrow">旅學堂 · 2026 影響力報告</p>
+    <h1>陪伴，不是目的；<br>讓力量長出來，才是。</h1>
+    <p class="tag">旅學堂是一個以淡水為根的在地文化陪伴型組織。我們相信，真正的影響力，是一個人、一間店、一個場域是否因為我們而「長出」了自己的力量——從接住、共學、做事、給角色，一路擴散出去。</p>
+    <p class="hero-meta">2026 · Tamsui Traveler Impact Report</p>
+  </div>
+</section>
+
+<!-- ══════════════ 01 · 我們是誰 ══════════════ -->
+<section>
+  <div class="wrap">
+    <p class="eyebrow"><span class="num">01</span>我們是誰</p>
+    <h2>淡水在地，一群讓文化長出來的人</h2>
+    <p class="lead">旅學堂從淡水女路開始，把文史變成可以走、可以聊、可以記得的現場。我們培育在地導覽員（多數是二度就業女性、新住民、退休夥伴），串起學校、店家、新北捷運、大學 USR，把地方文化轉譯成深度體驗路線、桌遊、教案與影響力報告。</p>
+
+    <div class="two-col">
+      <div class="col-card">
+        <h4>我們做什麼</h4>
+        <p style="font-size:14px;color:var(--ink-soft);line-height:1.8;margin:0">導覽走讀・深度遊程・女性導覽員培訓・學校 PBL 課程共創・企業 ESG 體驗・機關合作共創（Open 機廠・輕軌里山）・文化產品研發（桌遊・教案・影響力報告）</p>
+      </div>
+      <div class="col-card">
+        <h4>我們為誰而做</h4>
+        <p style="font-size:14px;color:var(--ink-soft);line-height:1.8;margin:0">因婚育或退休離開職場的女性・新住民・拒學青年・特殊需求孩子的家庭・學校師生・地方店家・想實踐 ESG 的企業與機關・尋找真實旅行意義的旅人</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════ 02 · 影響力是什麼 ══════════════ -->
+<section style="background:var(--bg-alt)">
+  <div class="wrap">
+    <p class="eyebrow"><span class="num">02</span>影響力是什麼</p>
+    <h2>不是人次、場次，而是「長出來」</h2>
+    <p class="lead">在公部門評估的語言裡，影響力經常被簡化成報表上的數字——場次、人次、滿意度。但這些數字背後的真實是：一個原本在大人面前不太敢說話的媽媽，變得能帶團導覽；一位退休教師重新找到「我仍然有用」的位置；一個特殊需求的孩子，反覆來到淡水直到這裡成為他的自然教室。</p>
+
+    <blockquote>
+      陪力 ＝ 陪伴 ＋ 讓力量長出來。<br>
+      軟的那一端（情緒・關係・接住）與硬的那一端（能力・位置・影響力），<br>兩件事交織，才是社區陪伴的真正樣子。
+      <span class="cite">—— 旅學堂研究團隊，陪力卡定義</span>
+    </blockquote>
+
+    <div class="two-col" style="margin-top:28px">
+      <div class="col-card">
+        <h4 style="color:var(--dark-soft)">軟的那一端</h4>
+        <p class="sub" style="letter-spacing:.08em;color:var(--accent);font-family:-apple-system,sans-serif;font-weight:500">情緒・關係・接住</p>
+        <p style="font-size:14px;color:var(--ink-soft);line-height:1.8;margin:0">不催、不推、不拉。陪伴者在情緒與關係層面做的動作，讓一個人願意靠近並留下。篩選放在陪伴裡，不放在門口。</p>
+      </div>
+      <div class="col-card" style="border-color:var(--brick-soft)">
+        <h4 style="color:var(--brick)">硬的那一端</h4>
+        <p class="sub" style="letter-spacing:.08em;color:var(--brick-soft);font-family:-apple-system,sans-serif;font-weight:500">能力・位置・影響力</p>
+        <p style="font-size:14px;color:var(--ink-soft);line-height:1.8;margin:0">給工具、給角色、給機會。陪伴者讓對方長出自己的力量，從個人能力走向公共影響，不是依賴陪伴者。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════ 03 · 五條軸線 ══════════════ -->
+<section>
+  <div class="wrap">
+    <p class="eyebrow"><span class="num">03</span>影響力的五條軸線</p>
+    <h2>從一個人，到一個社群，到一個社會</h2>
+    <p class="lead">旅學堂 2026 年的影響力投射在五個策略方向。每一條軸線都是一條從個人成長到社會效應的路徑。</p>
+
+    <div class="axes">
+      <div class="axis axis-1">
+        <div class="axis-left"><div class="axis-num">目標 1</div><h4>女性賦能</h4></div>
+        <p>賦能受婚育、家庭照顧、退休或自信限制的女性夥伴，從生活經驗走向公共參與、地方實作中的穩定角色，並建立非典型收入。</p>
+      </div>
+      <div class="axis axis-2">
+        <div class="axis-left"><div class="axis-num">目標 2</div><h4>文化合作網絡</h4></div>
+        <p>串聯企業、店家、職人與地方場域，共同轉譯淡水文化為深度體驗路線與文化產品，形成可持續的合作網絡。</p>
+      </div>
+      <div class="axis axis-3">
+        <div class="axis-left"><div class="axis-num">目標 3</div><h4>教育共創</h4></div>
+        <p>與學校及教育夥伴共創地方教材與學習路徑，提升學生對淡水的文化理解、地方參與及在地認同。</p>
+      </div>
+      <div class="axis axis-4">
+        <div class="axis-left"><div class="axis-num">目標 4</div><h4>特殊需求支持</h4></div>
+        <p>對特殊需求學生的長期陪伴與支持模式，透過走讀與參與式學習，重建學習連結與自我表達。</p>
+      </div>
+      <div class="axis axis-5">
+        <div class="axis-left"><div class="axis-num">目標 5</div><h4>組織強化</h4></div>
+        <p>組織內外部盤點、優化內控並建立 SOP，強化旅學堂的管理能力與組織韌性，支撐三年期影響力累積。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════ 04 · 真實故事 ══════════════ -->
+<section style="background:var(--bg-alt)">
+  <div class="wrap">
+    <p class="eyebrow"><span class="num">04</span>真實故事</p>
+    <h2>變化是真的，用故事說話</h2>
+    <p class="lead">從 17 位受訪者裡挑出三個最能說明「長出來」的故事：一位新住民從害怕上台到能帶團、一個機關從委託變共創、一個拒學青年重新找到和世界的關係。</p>
+
+    <!-- Story 1: 阮靖婷 -->
+    <div class="story">
+      <div class="story-head">
+        <div class="story-avatar">阮</div>
+        <div>
+          <h3>阮靖婷 · 從新住民到淡水女路導覽員</h3>
+          <p class="sub">女性賦能 · 二度就業 · 訪談日期 2026-03-18</p>
+        </div>
+      </div>
+      <div class="story-body">
+        <p>來自越南，18 歲嫁來台灣，在淡水生活二十多年卻對在地文史幾乎陌生。透過區公所招募資訊進入淡水女路 3.0，從不敢公開說話，到上台分享、帶隊導覽，並參與 Open 機廠工作。</p>
+        <div class="story-quote">「有旅學堂才有今天的靖婷。」</div>
+        <p>她明確地說，工作不只是收入，更是成長與尊嚴的來源。她開始看見自己的生命故事與新住民視角，具有獨特的對外分享價值。</p>
+      </div>
+      <div class="story-tags">
+        <span class="story-tag">低門檻進場</span>
+        <span class="story-tag">真的上場</span>
+        <span class="story-tag">給個正式身份</span>
+        <span class="story-tag">用你原本的專業</span>
+      </div>
+    </div>
+
+    <!-- Story 2: 葉志昱 -->
+    <div class="story">
+      <div class="story-head">
+        <div class="story-avatar" style="background:var(--dark)">葉</div>
+        <div>
+          <h3>葉志昱 · 新北捷運 × 旅學堂 Open 機廠</h3>
+          <p class="sub">文化合作網絡 · 新北捷運公司營運中心副主任 · 訪談日期 2026-04-08</p>
+        </div>
+      </div>
+      <div class="story-body">
+        <p>新北捷運已有品牌理念，也有在地溝通方法，但缺少一個能真正共同實作的合作夥伴。透過與旅學堂的 Open 機廠合作，把原本技術性的軌道場域轉化為地方敘事空間，讓「搭車本身成為旅行目的」從品牌想像變成實際經驗。</p>
+        <div class="story-quote">「雙方是彼此補位的共創，而非單向委託。」</div>
+        <p>第一線司機員走出駕駛艙，成為地方故事與公共教育的一部分。這是公共運輸與地方文化深度整合的新範型。</p>
+      </div>
+      <div class="story-tags">
+        <span class="story-tag">牽線合作</span>
+        <span class="story-tag">真的上場</span>
+        <span class="story-tag">用你原本的專業</span>
+        <span class="story-tag">寫下怎麼做</span>
+      </div>
+    </div>
+
+    <!-- Story 3: Vivi -->
+    <div class="story">
+      <div class="story-head">
+        <div class="story-avatar" style="background:var(--accent)">吳</div>
+        <div>
+          <h3>吳宛庭（Vivi）· 拒學後的成長歷程</h3>
+          <p class="sub">教育共創 · 自學青年 · 訪談日期 2026-03-20</p>
+        </div>
+      </div>
+      <div class="story-body">
+        <p>2019 年前後因拒學離開學校體制，旅學堂幾乎貫穿她從國小、國中到高中各階段的成長經驗。不被推著走、不被考試評價，而是在低壓狀態下持續累積理解。</p>
+        <div class="story-quote">「旅學堂強調當下感受，與個人從體驗中真正得到什麼。」</div>
+        <p>走讀經驗轉化為繪本創作、印刷出版、文字書寫與小論文發表。從單一視角發展為多重視角的觀察記錄能力，成為她日後創作的核心。</p>
+      </div>
+      <div class="story-tags">
+        <span class="story-tag">低門檻進場</span>
+        <span class="story-tag">可以做不好</span>
+        <span class="story-tag">配合你的節奏</span>
+        <span class="story-tag">公共可見</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════ 05 · 怎麼評估 ══════════════ -->
+<section class="section-dark">
+  <div class="wrap">
+    <p class="eyebrow"><span class="num">05</span>我們怎麼評估</p>
+    <h2>陪力卡<br>讓看不見的動作變得可以檢視</h2>
+    <p class="lead">從 17 位訪談者的實務經驗，整理出陪伴歷程中的 15 個動作。這不是一份理想清單，是一套夠誠實的工具：把「我們到底在做什麼」說得清楚、寫得下來，也能一起盤點、優化、傳承。</p>
+
+    <div class="stats">
+      <div class="stat">
+        <div><span class="stat-num">17</span><span class="stat-unit">位</span></div>
+        <div class="stat-label">訪談夥伴</div>
+      </div>
+      <div class="stat">
+        <div><span class="stat-num">60</span><span class="stat-unit">個</span></div>
+        <div class="stat-label">原始自創詞彙</div>
+      </div>
+      <div class="stat">
+        <div><span class="stat-num">15</span><span class="stat-unit">張</span></div>
+        <div class="stat-label">動作卡</div>
+      </div>
+      <div class="stat">
+        <div><span class="stat-num">5</span><span class="stat-unit">階段</span></div>
+        <div class="stat-label">完整陪伴歷程</div>
+      </div>
+    </div>
+
+    <h3 style="margin-top:36px;margin-bottom:10px">陪伴歷程的五個階段</h3>
+    <p style="color:#D4C9AE;font-size:15px;margin-bottom:10px">前兩階段是情緒與關係的底，中間兩階段是能力與位置的站穩，最後是影響力的外延。</p>
+
+    <div class="phases-row">
+      <div class="phase-box">
+        <div class="p-id">g1</div>
+        <h4>接住</h4>
+        <div class="p-side">激勵面</div>
+        <p class="p-desc">讓人願意靠近</p>
+        <div class="phase-cards">
+          <div class="pc"><span class="pc-id">g1-1</span>低門檻進場</div>
+          <div class="pc"><span class="pc-id">g1-2</span>記得你</div>
+          <div class="pc"><span class="pc-id">g1-3</span>可以做不好</div>
+        </div>
+      </div>
+      <div class="phase-box">
+        <div class="p-id">g2</div>
+        <h4>共學</h4>
+        <div class="p-side">陪伴面</div>
+        <p class="p-desc">長出自己節奏</p>
+        <div class="phase-cards">
+          <div class="pc"><span class="pc-id">g2-1</span>配合你的節奏</div>
+          <div class="pc"><span class="pc-id">g2-2</span>互為師徒</div>
+          <div class="pc"><span class="pc-id">g2-3</span>不給答案</div>
+        </div>
+      </div>
+      <div class="phase-box">
+        <div class="p-id">g3</div>
+        <h4>做事</h4>
+        <div class="p-side">賦能面</div>
+        <p class="p-desc">帶進真實現場</p>
+        <div class="phase-cards">
+          <div class="pc"><span class="pc-id">g3-1</span>真的上場</div>
+          <div class="pc"><span class="pc-id">g3-2</span>交給你負責</div>
+          <div class="pc"><span class="pc-id">g3-3</span>公共可見</div>
+        </div>
+      </div>
+      <div class="phase-box">
+        <div class="p-id">g4</div>
+        <h4>給角色</h4>
+        <div class="p-side">賦權面</div>
+        <p class="p-desc">給有名字的位置</p>
+        <div class="phase-cards">
+          <div class="pc"><span class="pc-id">g4-1</span>給個正式身份</div>
+          <div class="pc"><span class="pc-id">g4-2</span>用你原本的專業</div>
+          <div class="pc"><span class="pc-id">g4-3</span>回頭看自己走多遠</div>
+        </div>
+      </div>
+      <div class="phase-box">
+        <div class="p-id">g5</div>
+        <h4>擴散</h4>
+        <div class="p-side">影響面</div>
+        <p class="p-desc">把改變傳出去</p>
+        <div class="phase-cards">
+          <div class="pc"><span class="pc-id">g5-1</span>牽線合作</div>
+          <div class="pc"><span class="pc-id">g5-2</span>寫下怎麼做</div>
+          <div class="pc"><span class="pc-id">g5-3</span>退場允許</div>
+        </div>
+      </div>
+    </div>
+
+    <h3 style="margin-top:40px;margin-bottom:10px">這是一套從「參加者」到「可以接棒的人」的人才歷程</h3>
+
+    <div class="journey">
+      <div class="jbox start">
+        <div class="jlabel">歷程起點</div>
+        <h4>來參加走讀的人</h4>
+        <ul>
+          <li>一次性的參與者</li>
+          <li>沒有固定身份</li>
+          <li>還在觀望</li>
+        </ul>
+      </div>
+      <div class="arrow">→</div>
+      <div class="jbox end">
+        <div class="jlabel">歷程終點</div>
+        <h4>可以接棒的人</h4>
+        <ul>
+          <li>有角色、有職責</li>
+          <li>有專業、有貢獻</li>
+          <li>能帶領他人</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="method-card" style="background:rgba(255,252,244,0.12);border:1.5px solid rgba(255,252,244,0.3);color:#FFF4E5">
+      <h4 style="color:#FFE4B8;font-size:20px">方法論創新：四欄標記法</h4>
+      <p style="font-size:17px;color:#FFF4E5;font-weight:500;line-height:1.85;margin-bottom:14px">每一筆受訪者的成果，同時標記四欄——原始詞彙、五力（結果側）、陪力卡（動作側）、面向。統計時只看「五力」與「陪力卡」兩欄，原話保留、面向另標。</p>
+      <table class="method-table" style="color:#FFFFFF;background:rgba(0,0,0,0.2);border-radius:8px;overflow:hidden">
+        <thead>
+          <tr><th style="background:rgba(255,228,184,0.25);color:#FFFFFF;font-weight:700">原始成果</th><th style="background:rgba(255,228,184,0.25);color:#FFFFFF;font-weight:700">五力（結果側）</th><th style="background:rgba(255,228,184,0.25);color:#FFFFFF;font-weight:700">陪力卡（動作側）</th><th style="background:rgba(255,228,184,0.25);color:#FFFFFF;font-weight:700">面向</th></tr>
+        </thead>
+        <tbody>
+          <tr><td style="border-color:rgba(255,252,244,0.2);color:#FFFFFF;font-weight:500">退休意義感</td><td style="border-color:rgba(255,252,244,0.2);color:#FFFFFF;font-weight:500">角色承接力</td><td style="border-color:rgba(255,252,244,0.2);color:#FFFFFF;font-weight:500">g4-3 回頭看</td><td style="border-color:rgba(255,252,244,0.2);color:#FFFFFF;font-weight:500">個人端</td></tr>
+          <tr><td style="border-color:rgba(255,252,244,0.2);color:#FFFFFF;font-weight:500">能力再啟動</td><td style="border-color:rgba(255,252,244,0.2);color:#FFFFFF;font-weight:500">角色承接力</td><td style="border-color:rgba(255,252,244,0.2);color:#FFFFFF;font-weight:500">g4-2 專業放大</td><td style="border-color:rgba(255,252,244,0.2);color:#FFFFFF;font-weight:500">個人端</td></tr>
+          <tr><td style="border-color:rgba(255,252,244,0.2);color:#FFFFFF;font-weight:500">共創結構</td><td style="border-color:rgba(255,252,244,0.2);color:#FFFFFF;font-weight:500">社會連結力</td><td style="border-color:rgba(255,252,244,0.2);color:#FFFFFF;font-weight:500">g5-1 牽線合作</td><td style="border-color:rgba(255,252,244,0.2);color:#FFFFFF;font-weight:500">組織端</td></tr>
+          <tr class="highlight-row"><td style="border-color:rgba(255,252,244,0.2);color:#FFE4B8;font-weight:700">家人接送去導覽</td><td style="border-color:rgba(255,252,244,0.2);color:#FFE4B8;font-weight:700">社會連結力</td><td style="border-color:rgba(255,252,244,0.2);color:#FFE4B8;font-weight:700"><span class="dash">——</span></td><td style="border-color:rgba(255,252,244,0.2);color:#FFE4B8;font-weight:700">關係網端</td></tr>
+        </tbody>
+      </table>
+      <p style="font-size:16px;color:#FFF4E5;font-weight:500;margin-top:14px;line-height:1.8;font-style:italic">關鍵創新：把「觀察面向」從「動作欄」分離——讓不是助人者主動做的事（例如家人外溢），仍能被記錄和統計，但不會被誤當成動作。這個分離，讓整套系統變得誠實且可比較。</p>
+    </div>
+
+    <blockquote style="background:rgba(255,252,244,0.12);border-left:4px solid #FFE4B8;color:#FFFFFF;font-size:23px;font-weight:600;margin-top:36px;font-style:italic">
+      陪力卡不是一套完美的工具，是一套夠誠實的工具。
+    </blockquote>
+  </div>
+</section>
+
+<!-- ══════════════ 06 · 成果事件鏈 ══════════════ -->
+<section>
+  <div class="wrap">
+    <p class="eyebrow"><span class="num">06</span>成果事件鏈 Theory of Change</p>
+    <h2>投入，如何變成影響</h2>
+    <p class="lead">從「花了多少錢、做了多少場」到「讓誰的生命改變了、讓社會多了什麼」，我們用 IOOVI 框架把它攤開。投入（Input）→ 活動（Activity）→ 產出（Output）→ 成果（Outcome）→ 價值（Value）→ 影響（Impact），每一欄都是一個階段。</p>
+
+    <!-- 五個群組的簡化 ToC -->
+    <div class="toc-group" id="toc-host"></div>
+  </div>
+</section>
+
+<!-- ══════════════ 07 · 2026 目標 ══════════════ -->
+<section style="background:var(--bg-alt)">
+  <div class="wrap">
+    <p class="eyebrow"><span class="num">07</span>2026 · 三年目標</p>
+    <h2>我們要達成的</h2>
+    <p class="lead">五條影響軸線各自有具體的 2026 目標，配上產出指標與成果證據。這份目標是我們對自己、對夥伴、對社會的承諾。</p>
+
+    <div class="goal-grid">
+      <div class="goal-card">
+        <div class="gnum">目標 1 · 女性賦能</div>
+        <h4>從家庭照顧者走向導覽員、文化工作者的穩定角色</h4>
+        <p>核心成果：遊程路線 10 條、穩定導覽出勤、非典型收入證明（薪資單・接案紀錄）。</p>
+      </div>
+      <div class="goal-card">
+        <div class="gnum">目標 2 · 文化合作網絡</div>
+        <h4>品牌故事化、場域從餐飲延伸為完整體驗設計</h4>
+        <p>核心成果：店家合作場次、客流量、品牌故事文件、媒體曝光、引薦案例。</p>
+      </div>
+      <div class="goal-card">
+        <div class="gnum">目標 3 · 教育共創</div>
+        <h4>校本課程深化、跨校網絡形成、學生主動表達</h4>
+        <p>核心成果：課程模組、跨校成果發表、學生作品、教師回饋問卷。</p>
+      </div>
+      <div class="goal-card">
+        <div class="gnum">目標 4 · 特殊需求支持</div>
+        <h4>透過地方文化體驗重建學習連結與自我表達</h4>
+        <p>核心成果：個別陪伴紀錄、學習歷程、家長持續參與意願問卷。</p>
+      </div>
+      <div class="goal-card" style="grid-column:span 2">
+        <div class="gnum">目標 5 · 組織強化</div>
+        <h4>SOP 標準化、三年期影響力累積、組織韌性</h4>
+        <p>核心成果：SOP 完成率、活動場次與服務人次報表、影響力報告、年度評估指標。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════ 08 · 邀請 ══════════════ -->
+<section class="section-dark">
+  <div class="wrap">
+    <p class="eyebrow"><span class="num">08</span>邀請</p>
+    <h2>想一起讓淡水長出來？</h2>
+    <p class="lead">我們需要不同角色的夥伴加入。不管你是企業 ESG 負責人、學校老師、願意被導覽的朋友，或是想成為導覽員的淡水媳婦——都有一個位置在等你。</p>
+
+    <div class="cta-grid">
+      <div class="cta-card">
+        <h4>企業 · ESG 合作</h4>
+        <p>員工深度體驗、團隊建立、ESG 報告素材、主題路線客製。把你們的公共承諾，落地成一次真實的地方體驗。</p>
+      </div>
+      <div class="cta-card">
+        <h4>機關 · 政策共創</h4>
+        <p>新北捷運 Open 機廠、輕軌里山等案例正在發生。我們可以一起把技術性場域轉譯成地方敘事，被民眾記住。</p>
+      </div>
+      <div class="cta-card">
+        <h4>學校 · USR 課程</h4>
+        <p>PBL 共備、真實場域學習、跨校成果發表。讓學生從課堂走到地方，在真正的情境裡學習與表達。</p>
+      </div>
+      <div class="cta-card">
+        <h4>個人 · 參與走讀</h4>
+        <p>淡水深度路線、女路走讀、文化體驗。不只是旅遊，而是一次和地方建立關係的機會。</p>
+      </div>
+      <div class="cta-card">
+        <h4>成為導覽員</h4>
+        <p>如果你是二度就業的媽媽、退休的夥伴、新住民，或只是想把自己對淡水的愛變成一份工作——來試試淡水女路。</p>
+      </div>
+      <div class="cta-card">
+        <h4>店家・職人・場域</h4>
+        <p>我們持續尋找願意開放故事、共同設計體驗的在地夥伴。讓你的店與地方文化一起被看見、被記得、被引薦。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════ 09 · 個人成果回饋 · 陪力卡 ══════════════ -->
+<section style="background:var(--bg-alt)">
+  <div class="wrap">
+    <p class="eyebrow"><span class="num">09</span>個人成果回饋 · 陪力卡</p>
+    <h2>17 位夥伴，完整的成果標記</h2>
+    <p class="lead">把每位受訪夥伴的原始成果詞彙對應到陪力卡的 15 張動作卡。這是我們從質性訪談轉成可比較、可統計、可傳承資料的實際作法。</p>
+
+    <div class="phases-legend" id="ec-legend"></div>
+
+    <div class="group-tabs">
+      <span class="gt-label">群組</span>
+      <button class="gt active" data-g="全部" onclick="ecSetGroup(this)">全部</button>
+      <button class="gt" data-g="旅學堂" onclick="ecSetGroup(this)">旅學堂</button>
+      <button class="gt" data-g="合作夥伴" onclick="ecSetGroup(this)">合作夥伴</button>
+      <button class="gt" data-g="學校" onclick="ecSetGroup(this)">學校</button>
+      <button class="gt" data-g="女性導覽員" onclick="ecSetGroup(this)">女性導覽員</button>
+    </div>
+
+    <p class="ec-results" id="ec-results"></p>
+    <div class="ec-grid" id="ec-grid"></div>
+  </div>
+</section>
+
+<script>
+const EC_PHASES = {
+  g1:{ label:"接住",   side:"激勵面", dot:"#B5347A", bg:"#FDF0F7", border:"#E8B4D4", text:"#8B3A6E" },
+  g2:{ label:"共學",   side:"陪伴面", dot:"#0F6E56", bg:"#E1F5EE", border:"#9FE1CB", text:"#0F6E56" },
+  g3:{ label:"做事",   side:"賦能面", dot:"#993C1D", bg:"#FAECE7", border:"#F5C4B3", text:"#993C1D" },
+  g4:{ label:"給角色", side:"賦權面", dot:"#534AB7", bg:"#EEEDFE", border:"#CECBF6", text:"#534AB7" },
+  g5:{ label:"擴散",   side:"影響面", dot:"#185FA5", bg:"#E6F1FB", border:"#B5D4F4", text:"#185FA5" },
+};
+const EC_CARDS = {
+  "g1-1":{n:"低門檻進場",p:"g1"}, "g1-2":{n:"記得你",p:"g1"}, "g1-3":{n:"可以做不好",p:"g1"},
+  "g2-1":{n:"配合你的節奏",p:"g2"}, "g2-2":{n:"互為師徒",p:"g2"}, "g2-3":{n:"不給答案",p:"g2"},
+  "g3-1":{n:"真的上場",p:"g3"}, "g3-2":{n:"交給你負責",p:"g3"}, "g3-3":{n:"公共可見",p:"g3"},
+  "g4-1":{n:"給個正式身份",p:"g4"}, "g4-2":{n:"用你原本的專業",p:"g4"}, "g4-3":{n:"回頭看自己走多遠",p:"g4"},
+  "g5-1":{n:"牽線合作",p:"g5"}, "g5-2":{n:"寫下怎麼做",p:"g5"}, "g5-3":{n:"退場允許",p:"g5"},
+};
+const EC_GROUPS = {
+  "旅學堂":    {bg:"#FAECE7", text:"#993C1D", bd:"#F5C4B3"},
+  "合作夥伴":  {bg:"#FAEEDA", text:"#854F0B", bd:"#FAC775"},
+  "學校":      {bg:"#E6F1FB", text:"#185FA5", bd:"#B5D4F4"},
+  "女性導覽員":{bg:"#EEEDFE", text:"#534AB7", bd:"#CECBF6"},
+};
+
+// 17 位夥伴：[原始詞彙, 陪力卡 ID 或 null (外溢), 本案描述]
+const ecPeople = [
+  {n:"吳峻毅",i:"吳",g:"旅學堂",r:"員工回饋・地方文史工作者・旅學堂核心師資",d:"2026-03-20",
+    s:"長期投入淡水地方文化工作，自認是「文化推動者」而非純研究型學者。旅學堂讓他原本以個人方式推動的文化理想，有了組織品牌與平台可以承接，開始思考路線設計、產品整合與更廣範圍的文化體驗規劃（里山・里海・輕軌・自來水）。",
+    o:[["個人→組織","g4-1","以核心師資身份承接組織公共性"],["範疇擴大","g3-3","從古蹟導覽延伸到里山・里海・輕軌・自來水等公共場域"],["現實磨練","g3-1","承擔商業模式、人才培育、制度化等真實挑戰"],["文化傳承","g5-2","個人知識整理成可複製的培訓課程與路線產品"]]},
+  {n:"張哲岳（Kevin）",i:"張",g:"合作夥伴",r:"合作夥伴回饋・阿三哥農莊・店家",d:"2026-03-20",
+    s:"旅學堂帶來的不只是客人，而是一群願意理解場域、聆聽故事的高品質客群。農場逐步成為可被理解、被記得、也能持續被引薦的地方合作場域。",
+    o:[["客群改變","g3-1","農場接待真實體驗型客群"],["視角轉變","g2-3","透過合作回饋對話而非下指導，自己找到體驗設計視角"],["代表作累積","g3-3","櫻花季餐盒、輕軌路線、風土餐累積為可引薦案例"],["組織目標端","g5-1","納入地方路線與代表性專案合作"]]},
+  {n:"葉志昱",i:"葉",g:"合作夥伴",r:"合作夥伴回饋・新北捷運公司營運中心副主任",d:"2026-04-08",
+    s:"透過 Open 機廠合作把技術性軌道場域轉化為地方敘事空間，讓「搭車本身成為旅行目的」從品牌想像變成實際經驗。雙方是彼此補位的共創，而非單向委託。",
+    o:[["場域轉譯","g5-2","把技術性軌道場域轉化為地方敘事語言"],["對話深化","g2-3","品牌對話從單向訊息走向民眾可提問的現場"],["共創結構","g5-1","資源受限下彼此補位的共創合作"],["人的可見性","g3-3","第一線司機員走出駕駛艙成為公共教育的一部分"]]},
+  {n:"李棟梁",i:"李",g:"合作夥伴",r:"合作夥伴回饋・退休大學教師・淡海輕軌志工幹部",d:"2026-03-30",
+    s:"退休前於科技大學任教近三十年，退休後投入淡海輕軌志工。在志工現場認識旅學堂後，逐步從點對點服務延伸到更大範圍的地方合作——培育女性夥伴、牽線新北捷運形成 Open 機廠共創合作。",
+    o:[["能力再啟動","g4-2","教學與組織能力在退休後找到轉化場域"],["退休意義感","g4-3","以收入與邀請肯定「我仍然有用」"],["橋梁角色","g5-1","牽線新北捷運與旅學堂促成 Open 機廠共創"],["傳承視野","g5-2","思考如何整理成可傳承的方法"]]},
+  {n:"江昱德",i:"江",g:"合作夥伴",r:"合作夥伴回饋・AI 應用・知識提煉工作者",d:"2026-03-16",
+    s:"以 AI 進行工作流程優化、知識整理與隱性知識提煉。旅學堂提供一個具信任基礎的合作對象，讓他得以接觸真實工作流程、測試 AI 賦能方法，把原本難以說明的服務轉化為可展示、可操作的流程。",
+    o:[["服務具象化","g3-3","AI 賦能服務透過工作坊成為可展示、可操作流程"],["案例驗證","g3-1","旅學堂真實工作流程作為 AI 方法的測試場"],["市場拓展","g5-1","透過地方連結接觸地方組織市場"],["共創延伸","g3-2","從單次服務發展為共同提案的真實任務"]]},
+  {n:"陳穎君",i:"陳",g:"合作夥伴",r:"合作夥伴回饋・星奇兒創會理事長・特殊需求孩子陪伴",d:"2026-03-22",
+    s:"旅學堂的淡水深度路線、故事化導覽與女路導覽員的媽媽特質，讓特殊需求孩子在被接納的氛圍中反覆進入地方、逐步建立熟悉感與行動能力。",
+    o:[["地方感建立","g1-2","反覆進入淡水建立長期熟悉關係"],["社交門檻降低","g1-1","特殊需求孩子不用先符合條件就能進場"],["課程設計深化","g3-3","從藝術培力擴展為地方走讀整合模式"],["長期策略夥伴","g5-1","建立長期策略夥伴關係"]]},
+  {n:"鄭詩瑩老師",i:"鄭",g:"學校",r:"學校回饋・教師・合作課程",d:"",
+    s:"與旅學堂合作後，學生從被動接收轉向主動提問與表達，尤其在戲劇導入、實地踏查、AI 對話與小記者任務中，明顯提升了參與感與自信。",
+    o:[["學生端","g2-3","以提問代替評價讓學生主動提問表達"],["教師端","g2-2","共備讓老師重新思考教學可能性"],["課程端","g3-1","戲劇、踏查、訪談成為真實學習場景"],["組織目標端","g5-1","與學校共創 PBL 課程"]]},
+  {n:"涂敏芬",i:"涂",g:"學校",r:"學校回饋・淡江大學企管系・USR 計畫",d:"2026-03-30",
+    s:"原研究偏向科學園區產業管理，2018 年起因 USR 計畫轉向教學創新。旅學堂讓她的課程成果第一次在地方被明確看見與使用——從《覓情記》、《貓公主》桌遊到淡水女路成為議題場域。",
+    o:[["課程落地","g3-1","企管系學生真正進入地方推廣與銷售"],["研究門檻降低","g1-1","可親近場域降低學生進入質性訪談的心理障礙"],["影響力工具","g5-2","影響力報告書成為 ESG 教材"],["長期共創平台","g5-1","USR 長期共測教學工具、共創平台"]]},
+  {n:"吳宛庭（Vivi）",i:"吳",g:"學校",r:"學校回饋・自學青年・拒學後重建學習歷程",d:"2026-03-20",
+    s:"2019 年前後因拒學離開學校體制，旅學堂幾乎貫穿她從國小、國中到高中各階段的成長經驗。旅學堂讓她在低壓狀態下持續累積理解，並發展出繪本創作與多重視角觀察能力。",
+    o:[["替代學習","g1-1","拒學後不用先符合體制標準就能參與"],["創作表達","g3-3","走讀轉化為繪本創作、印刷出版、小論文發表"],["多重視角","g2-1","允許以自己節奏發展多重視角觀察能力"],["自我認同","g1-3","低壓、不評價的氛圍讓她能形成自我認同"]]},
+  {n:"陳家珍",i:"陳",g:"女性導覽員",r:"女性導覽員回饋・二度就業",d:"2026-03-17",
+    s:"婚後長達十年以家庭照顧與育兒為重心。透過旅學堂公開招募跨出第一步後，在導覽訓練、文史學習與實作中逐步練習公開表達與帶領他人。",
+    o:[["自信與表達","g3-1","透過導覽實作進入真實現場練習公開表達"],["角色認同","g4-1","從家庭照顧者建立導覽員身份"],["視野擴大","g3-2","生活重心從家庭延伸至工作、學習與公共參與"],["家庭外溢",null,"孩子受啟發接觸地方知識（外溢效應，非旅學堂動作）"]]},
+  {n:"陳倖靜（倖子老師）",i:"陳",g:"女性導覽員",r:"女性導覽員回饋・退休藝術講師・淡水女路 1.0",d:"2026-03-12",
+    s:"在美術館退休後加入旅學堂，把過去的藝術專業融入導覽，讓參加者從藝術家的眼光看地方，並主動創作導覽地圖教材分享給夥伴。",
+    o:[["專業融入","g4-2","藝術背景接到地方導覽，主動創作地圖教材"],["革命情感","g5-1","夥伴間建立跨越課程的深厚連結"],["地方認同","g2-2","透過文史老師帶領與夥伴互學深入理解淡水"],["組織建議","g5-3","「看著學妹茁壯後逐步退場」的對話正在發生"]]},
+  {n:"邱芊瑞",i:"邱",g:"女性導覽員",r:"女性導覽員回饋・家庭主婦・淡水女路 3.0",d:"2026-03-17",
+    s:"孩子成家後以奶奶身分重新思考自我。從完全沒有正式工作經驗，到能站上台導覽、擔任講師、參與研發與專案任務。",
+    o:[["行動自信","g3-2","逐步承接導覽、講師、研發任務建立自信"],["地方認同","g2-1","從不了解到能主動介紹馬偕、淡江大橋等在地故事"],["生命意義","g4-3","從家庭消費角色轉向有所貢獻的參與者"],["潛能啟動","g4-2","原有簡報、電腦能力在旅學堂找到發揮場域"]]},
+  {n:"孔祥敏（小敏）",i:"孔",g:"女性導覽員",r:"女性導覽員回饋・淡水居民 30 年",d:"2026-03-17",
+    s:"歷經幼教、旅遊業、家庭照顧與再進修多次職涯轉換。旅學堂提供一個友善且有共同磁場的團體合作場域，讓她以舒服的方式把過去累積的能力放進地方文化工作。",
+    o:[["能力落地","g4-2","帶領與協調能力在團體場域找到合適位置"],["地方再認識","g2-1","住了三十年的淡水用立體視角重新看見"],["退休節奏","g1-3","不被高壓績效綁住，允許以自身節奏參與"],["穩定貢獻","g3-2","以穩定承接與支持他人的方式貢獻"]]},
+  {n:"陳媛",i:"陳",g:"女性導覽員",r:"女性導覽員回饋・二度就業・淡水女路",d:"2026-03-19",
+    s:"淡江大學畢業後回到淡水定居。旅學堂最大的影響在於提供多元角色設計——她可以先從小隊長、流程安排、兒童活動設計等支援位置開始。",
+    o:[["彈性角色","g2-1","多元角色設計讓她按自己步調成長"],["信心積累","g3-2","長期被交付任務慢慢建立可承受嘗試的狀態"],["家庭外溢",null,"孩子自然重述淡水故事（外溢效應）"],["自我確認","g4-1","重新確認自己仍有可被看見的社會角色"]]},
+  {n:"阮靖婷",i:"阮",g:"女性導覽員",r:"女性導覽員回饋・新住民・淡水女路 3.0→4.0",d:"2026-03-18",
+    s:"來自越南，18 歲嫁來台灣，在淡水生活二十多年卻對在地文史幾乎陌生。從害怕到建立信心，從學員轉化為導覽員並參與 Open 機廠工作。",
+    o:[["身份轉化","g4-1","從新住民轉化為能帶領他人的導覽員"],["表達信心","g3-1","母親節活動成為首次公開突破的真實現場"],["尊嚴與意義","g4-3","工作不只是收入，更是成長與尊嚴的來源"],["新住民視角","g4-2","新住民身分放大為獨特的對外分享內容"]]},
+  {n:"林秀貞",i:"林",g:"女性導覽員",r:"女性導覽員回饋・幼教背景・淡水女路 3.5→5.0",d:"2026-03-27",
+    s:"歷經幼教、成人教育、終身學習與特殊生家長支持工作。她最重視旅學堂能整合行動劇、文化體驗、議題教案與桌遊研發，不只是傳統導覽。",
+    o:[["教育轉譯","g3-3","行動劇、議題教案、桌遊研發成為可見成果"],["彈性就業","g2-1","任務型合作讓她兼顧家庭與長輩照顧"],["陪跑者角色","g2-2","帶著想學的人場勘討論，扮演陪跑者"],["組織建議",null,"建議建立從實習到正式的認證機制（未做的建議）"]]},
+  {n:"董佩娟",i:"董",g:"女性導覽員",r:"女性導覽員回饋・行銷背景・二度就業",d:"2026-03-18",
+    s:"廣告公關行銷工作約十年後因育兒離開職場。旅學堂讓她從學員成長為導覽員，並進一步承擔淡水女路與中正紀念堂等專案的 PM 角色。",
+    o:[["導覽主軸","g2-3","從參考他人稿到找到自己的敘事方式"],["專案全流程","g3-2","完整負責專案從規劃到收尾"],["信任文化","g1-3","高信任、可討論的團隊氛圍"],["職涯再啟動","g4-1","專案經理角色讓她重新進入有主體性的工作"]]},
+];
+
+let ecGroup = "全部";
+
+function ecLegend() {
+  const el = document.getElementById("ec-legend");
+  const count = {g1:0,g2:0,g3:0,g4:0,g5:0};
+  ecPeople.forEach(p => p.o.forEach(o => { if (o[1]) count[EC_CARDS[o[1]].p]++; }));
+  el.innerHTML = Object.entries(EC_PHASES).map(([k,ph]) => `
+    <div class="pl" style="color:${ph.text}">
+      <span class="pl-dot" style="background:${ph.dot}"></span>
+      <span class="pl-name">${k} ${ph.label}・${ph.side}</span>
+      <span class="pl-c">${count[k]}</span>
+    </div>`).join("");
+}
+
+function ecRender() {
+  const grid = document.getElementById("ec-grid");
+  let visible = 0;
+  grid.innerHTML = ecPeople.map(p => {
+    const show = ecGroup === "全部" || p.g === ecGroup;
+    if (show) visible++;
+    const gc = EC_GROUPS[p.g];
+    const origins = p.o.map(o => {
+      const [term, cardId, desc] = o;
+      const card = cardId ? EC_CARDS[cardId] : null;
+      const ph = card ? EC_PHASES[card.p] : null;
+      const bg = ph ? ph.bg : "#F5F5F3";
+      const bd = ph ? ph.border : "#D8D8D4";
+      const tx = ph ? ph.text : "#5f5e5a";
+      return `<div class="ec-origin" style="background:${bg};border-color:${bd};color:${tx}">
+        <div class="ec-origin-top">
+          <span class="ec-origin-name">${card ? card.n : "—— 外溢／建議"}</span>
+          <span class="ec-origin-id">${cardId || ""}</span>
+        </div>
+        <div class="ec-origin-term">${term}</div>
+        <div class="ec-origin-desc">${desc}</div>
+      </div>`;
+    }).join("");
+    return `<div class="ec-card${show?"":" hidden"}">
+      <div class="ec-card-top">
+        <div class="ec-avatar" style="background:${gc.bg};color:${gc.text}">${p.i}</div>
+        <div class="ec-meta">
+          <div class="ec-name-row">
+            <span class="ec-fullname">${p.n}</span>
+            <span class="ec-group-badge" style="background:${gc.bg};color:${gc.text};border-color:${gc.bd}">${p.g}</span>
+          </div>
+          <div class="ec-role">${p.r}${p.d?"・"+p.d:""}</div>
+        </div>
+      </div>
+      <p class="ec-story">${p.s}</p>
+      <div class="ec-origins">${origins}</div>
+    </div>`;
+  }).join("");
+  document.getElementById("ec-results").textContent = `顯示 ${visible} / ${ecPeople.length} 位夥伴`;
+}
+
+function ecSetGroup(btn) {
+  document.querySelectorAll(".gt").forEach(b => b.classList.remove("active"));
+  btn.classList.add("active");
+  ecGroup = btn.dataset.g;
+  ecRender();
+}
+
+ecLegend();
+ecRender();
+</script>
+
+<footer>
+  <div class="wrap">
+    <div class="footer-mark"></div>
+    <p><strong>旅學堂 Tamsui Traveler</strong> · 2026 Impact Report</p>
+    <p style="margin-top:6px">本報告基於 2026 年 3 月至 4 月間 17 位受訪夥伴的質性訪談，以陪力卡框架整理而成。</p>
+  </div>
+</footer>
+
+<!-- ══════════════ 成果事件鏈資料與渲染 ══════════════ -->
+<script>
+const chains = [
+  {
+    label:"旅學堂與核心團隊",
+    tagText:"#3B6D11", tagBg:"#EAF3DE", tagBorder:"#C0DD97",
+    intro:"旅學堂把來自消費者、機關團體與學校的收入，轉換成女性賦能場域、文化轉譯產品，以及員工穩定的工時與收入。",
+    input:["自費報名費・標案・USR","員工薪資與時間投入"],
+    activity:["導覽・培訓・研發","SOP・薪酬・排班建立"],
+    output:["場次・人次・收入報表","SOP 文件・教案"],
+    outcome:["品牌公信力深化","員工自我實現感提升"],
+    value:["組織持續提供女性賦能場域","員工獲得穩定收入"],
+    impact:["台灣地方文化組織的永續示範","推動性別平等與女性經濟獨立"]
+  },
+  {
+    label:"合作夥伴",
+    tagText:"#854F0B", tagBg:"#FAEEDA", tagBorder:"#FAC775",
+    intro:"與新北捷運、新北旅協、在地店家共創，把品牌理念、公共運輸、在地消費與地方文化深度整合。",
+    input:["標案 145 萬","店家場域・食材・故事"],
+    activity:["Open 機廠・輕軌里山共創","店家田調・代表性合作"],
+    output:["Open 機廠場次","店家合作案例・引薦清單"],
+    outcome:["搭車成為旅行目的","店家從供應轉為品牌場域"],
+    value:["軌道品牌差異化","店家收入多元化"],
+    impact:["公共運輸與地方文化的整合範型","地方經濟活化"]
+  },
+  {
+    label:"學校",
+    tagText:"#185FA5", tagBg:"#E6F1FB", tagBorder:"#B5D4F4",
+    intro:"與校本課程、USR 計畫、教師共備合作，讓學生進入地方、老師重新思考教學、家長共學。",
+    input:["課程合作費・USR 資金","教師備課・學生時間"],
+    activity:["田調・共備・PBL 設計","學生走讀・家長共學"],
+    output:["課程模組・教案","學生作品・發表紀錄"],
+    outcome:["學校與地方持續連結","學生主動提問表達"],
+    value:["在地化課程資源","真實場域學習"],
+    impact:["學校與社區長期教育夥伴關係","下一代地方認同建立"]
+  },
+  {
+    label:"女性導覽員",
+    tagText:"#534AB7", tagBg:"#EEEDFE", tagBorder:"#CECBF6",
+    intro:"因婚育退出職場、退休女性、女力家人，進入淡水女路培訓，長出角色認同、經濟獨立與家庭外溢。",
+    input:["培訓報名費・個人能力資本","家人接送與支持"],
+    activity:["淡水女路培訓・踏查","專業融入・師徒陪跑"],
+    output:["導覽出勤・服務人次","遊程路線・地圖教材・桌遊"],
+    outcome:["自信心與表達提升","從家庭照顧者到文化工作者"],
+    value:["重新進入社會","退休後的被需要感"],
+    impact:["中高齡女性再就業的示範路徑","向下影響下一代的外溢"]
+  },
+  {
+    label:"消費者",
+    tagText:"#0F6E56", tagBg:"#E1F5EE", tagBorder:"#9FE1CB",
+    intro:"從機關團體的 ESG 預算到一般消費者的走讀報名，換得的不只是活動參與，而是對淡水的長期情感連結。",
+    input:["ESG 預算・標案","自費報名費・在地消費"],
+    activity:["主題路線・員工體驗","深度遊程・互動體驗"],
+    output:["參與場次・人次","滿意度・NPS・回訪率"],
+    outcome:["ESG 實踐感受提升","對淡水的情感連結"],
+    value:["ESG 的具體實踐故事","深度體驗的記憶點"],
+    impact:["ESG 投入帶動地方活化","旅遊行為轉向深度在地"]
+  },
+];
+
+const COLS = [
+  {key:"input",    head:"投入",  eng:"Input"},
+  {key:"activity", head:"活動",  eng:"Activity"},
+  {key:"output",   head:"產出",  eng:"Output"},
+  {key:"outcome",  head:"成果",  eng:"Outcome"},
+  {key:"value",    head:"價值",  eng:"Value"},
+  {key:"impact",   head:"影響",  eng:"Impact"},
+];
+
+const host = document.getElementById("toc-host");
+host.innerHTML = chains.map(ch => {
+  const cols = COLS.map((col, i) => {
+    const items = (ch[col.key]||[]).map(t => `<div class="toc-chip">${t}</div>`).join("");
+    const arrow = i < COLS.length - 1 ? '<div class="toc-arrow">→</div>' : '';
+    return `<div class="toc-col">
+      <div class="toc-col-head">${col.head}<small>${col.eng}</small></div>
+      ${items}
+    </div>${arrow}`;
+  }).join("");
+  return `<div style="margin-bottom:22px">
+    <div class="toc-group-title">
+      <h3>${ch.label}</h3>
+      <span class="tag" style="color:${ch.tagText};background:${ch.tagBg};border:0.5px solid ${ch.tagBorder}">利害關係人</span>
+    </div>
+    <p class="toc-group-intro">${ch.intro}</p>
+    <div class="toc-flow">${cols}</div>
+  </div>`;
+}).join("");
+</script>
+
+</body>
+</html>
