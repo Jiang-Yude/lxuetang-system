@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="robots" content="noindex, nofollow, noarchive, nosnippet">
-<title>旅學堂 培力卡｜陪伴的影響力評估框架</title>
+<title>旅學堂 陪力卡｜陪伴的影響力評估框架</title>
 <style>
   :root {
     --bg:        #FBEEE6;
@@ -235,6 +235,69 @@
   footer a:hover { text-decoration: underline; }
   footer .footer-mark { display: inline-block; width: 40px; height: 2px; background: #FFE4B8; margin-bottom: 14px; }
 
+  .big-formula {
+    background: linear-gradient(135deg, var(--dark), var(--dark-soft));
+    color: #FFFFFF; border-radius: 16px;
+    padding: 40px 28px; margin: 28px 0 36px; text-align: center;
+    box-shadow: 0 8px 24px rgba(138,47,21,0.18);
+  }
+  .big-formula .f-label {
+    display: inline-block; font-size: 12px; letter-spacing: .25em;
+    color: #FFE4B8; font-weight: 700; text-transform: uppercase;
+    margin-bottom: 18px;
+    font-family: -apple-system, "PingFang TC", sans-serif;
+  }
+  .big-formula .f-line {
+    font-size: clamp(1.4rem, 4vw, 2.2rem);
+    font-weight: 700; line-height: 1.5; letter-spacing: .02em;
+  }
+  .big-formula .f-big { color: #FFE4B8; font-size: 1.15em; }
+  .big-formula .f-op { color: #FFE4B8; margin: 0 .25em; font-weight: 400; }
+
+  .soft-hard-grid {
+    display: grid; grid-template-columns: 1fr auto 1fr;
+    gap: 14px; align-items: stretch; margin: 32px 0 22px;
+  }
+  @media (max-width: 680px) {
+    .soft-hard-grid { grid-template-columns: 1fr; }
+    .soft-hard-grid .sh-cross { transform: rotate(90deg); padding: 4px 0; }
+  }
+  .sh-card {
+    background: var(--paper); border: 2px solid; border-radius: 14px;
+    padding: 24px 22px; text-align: center;
+  }
+  .sh-card.soft { border-color: var(--g1-border); background: var(--g1-bg); }
+  .sh-card.hard { border-color: var(--g4-border); background: var(--g4-bg); }
+  .sh-card .sh-tag {
+    display: inline-block; font-size: 12px; font-weight: 700;
+    padding: 3px 14px; border-radius: 999px;
+    letter-spacing: .1em; margin-bottom: 10px;
+    font-family: -apple-system, "PingFang TC", sans-serif;
+  }
+  .sh-card.soft .sh-tag { background: var(--g1-text); color: #FFFFFF; }
+  .sh-card.hard .sh-tag { background: var(--g4-text); color: #FFFFFF; }
+  .sh-card .sh-head { font-size: 1.1rem; font-weight: 700; margin: 0 0 8px; }
+  .sh-card.soft .sh-head { color: var(--g1-text); }
+  .sh-card.hard .sh-head { color: var(--g4-text); }
+  .sh-card .sh-desc { font-size: 1.05rem; font-weight: 600; letter-spacing: .02em; margin: 0; }
+  .sh-card.soft .sh-desc { color: var(--g1-text); }
+  .sh-card.hard .sh-desc { color: var(--g4-text); }
+  .sh-cross {
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.6rem; color: var(--accent); font-weight: 700;
+    padding: 0 6px;
+  }
+
+  .conclusion-callout {
+    background: var(--paper); border: none;
+    border-left: 5px solid var(--brick);
+    border-radius: 0 12px 12px 0;
+    padding: 28px 30px; margin: 6px 0 8px;
+    font-size: clamp(1.15rem, 2.4vw, 1.45rem);
+    font-weight: 700; line-height: 1.7;
+    color: var(--brick); letter-spacing: .02em;
+  }
+
   .home-fab {
     position: fixed; top: 16px; left: 16px; z-index: 9999;
     background: #FFFFFF; color: var(--dark);
@@ -256,7 +319,7 @@
 <section class="hero">
   <div class="wrap">
     <span class="hero-mark"></span>
-    <p class="eyebrow">旅學堂 培力卡</p>
+    <p class="eyebrow">旅學堂 陪力卡</p>
     <h1>陪伴的影響力評估框架</h1>
     <p class="subtitle">社區陪伴工作的 15 個動作</p>
     <div class="hero-quote">
@@ -322,7 +385,7 @@
       AI 時代剛好為社會影響力評估帶來新的可能：它能把<strong>抽象、難以結構化的語意與概念</strong>整理出來。那些訪談裡零散的故事、那些「說不清楚但真的發生了」的改變，可以變成被閱讀、被分析、被累積的結構。
     </p>
     <p>
-      旅學堂的培力卡，就是在這個時代脈絡下長出來的工具，一個讓社會影響力「被看見」的在地化框架，跟既有國際標準對話、也回應在地現場的真實動作。
+      旅學堂的陪力卡，就是在這個時代脈絡下長出來的工具，一個讓社會影響力「被看見」的在地化框架，跟既有國際標準對話、也回應在地現場的真實動作。
     </p>
   </div>
 </section>
@@ -332,10 +395,10 @@
     <p class="eyebrow"><span class="num">02</span> 這個框架不只給旅學堂</p>
     <h2>所有做陪伴工作的組織，都可以用這套卡盤點自己</h2>
     <p class="lead">
-      旅學堂是專門做培力與賦能的組織，但這個框架不是旅學堂專屬的。
+      旅學堂是專門做陪伴與賦能的組織，但這個框架不是旅學堂專屬的。
     </p>
     <p>
-      任何做社區陪伴、培力賦能、助人工作的組織，包括 <strong>DEI（多元共融）組織、工藝傳承組織、社福機構、地方創生團隊</strong>，都可以拿這 15 張卡，盤點自己的工作。
+      任何做社區陪伴、陪力賦能、助人工作的組織，包括 <strong>DEI（多元共融）組織、工藝傳承組織、社福機構、地方創生團隊</strong>，都可以拿這 15 張卡，盤點自己的工作。
     </p>
     <div class="callout">
       這 15 張卡，你做了哪幾張？<br>
@@ -349,14 +412,14 @@
 <section>
   <div class="wrap">
     <p class="eyebrow"><span class="num">03</span> 這個框架怎麼做出來的</p>
-    <h2>Vicky 的六年累積 × 15 位利害關係人訪談 × AI 統整</h2>
+    <h2>Vicky 的六年累積 × 17 位利害關係人訪談 × AI 統整</h2>
 
     <p class="lead">
-      這套培力卡不是隨便講一講就說完。它是 Vicky 用整整六年的旅學堂經驗（過去五年的累積加上今年的規劃），加上 2026 年新做的深度訪談，再用 AI 統整出來的。
+      這套陪力卡不是隨便講一講就說完。它是 Vicky 用整整六年的旅學堂經驗（過去五年的累積加上今年的規劃），加上 2026 年新做的深度訪談，再用 AI 統整出來的。
     </p>
 
     <h3>六年行動足跡：從 1.0 到 6.0</h3>
-    <p>過去五年，旅學堂陪著淡水女路從 18 位起步，一路走到百人社群；今年（2026）邁入第六年，把累積的方法論整理成可被傳承的培力卡框架。</p>
+    <p>過去五年，旅學堂陪著淡水女路從 18 位起步，一路走到百人社群；今年（2026）邁入第六年，把累積的方法論整理成可被傳承的陪力卡框架。</p>
 
     <div class="timeline">
       <div class="timeline-row">
@@ -398,7 +461,7 @@
       <div class="timeline-row current">
         <span class="year">2026</span>
         <span class="ver">6.0</span>
-        <span class="theme">培力卡框架、成果事件鏈、影響力報告</span>
+        <span class="theme">陪力卡框架、成果事件鏈、影響力報告</span>
         <span class="count">規劃中</span>
       </div>
     </div>
@@ -415,10 +478,10 @@
         <li>各年的計畫與實際成果（政府輔導、產業表現）</li>
         <li>各界專業人士建議：商業顧問、社會影響力顧問、老師教授、政府輔導官員</li>
         <li>現在的產業環境、組織運作模式、成員狀況、團隊會議心得</li>
-        <li><strong>2026 年針對 15 位利害關係人的詳細深度訪問</strong></li>
+        <li><strong>2026 年針對 17 位利害關係人的詳細深度訪問</strong></li>
       </ul>
       <div class="arrow">↓</div>
-      <div class="result">用 AI 分析、對位、歸納　→　跑出這個培力卡框架</div>
+      <div class="result">用 AI 分析、對位、歸納　→　跑出這個陪力卡框架</div>
     </div>
 
     <div class="term-card">
@@ -429,10 +492,10 @@
     </div>
 
     <p>
-      這樣的資料量非常龐大、非常雜亂，各方意見又要被統整。如果要讓我們自己做，會是非常辛苦的事，光是把 15 份逐字稿讀完、對位、交叉比對，就要耗掉好幾個禮拜。
+      這樣的資料量非常龐大、非常雜亂，各方意見又要被統整。如果要讓我們自己做，會是非常辛苦的事，光是把 17 份逐字稿讀完、對位、交叉比對，就要耗掉好幾個禮拜。
     </p>
     <p>
-      <strong>Vicky 用心的資料收集與經營，加上 AI 對大量資料的統整能力</strong>，才讓這套培力卡能夠成形。這本身就是一個示範：AI 時代，我們如何把「<strong>自己多年累積、難以言說的專業知識與經驗</strong>」，整理成可被說明、可重複使用、可被分享的方法論與工具。
+      <strong>Vicky 用心的資料收集與經營，加上 AI 對大量資料的統整能力</strong>，才讓這套陪力卡能夠成形。這本身就是一個示範：AI 時代，我們如何把「<strong>自己多年累積、難以言說的專業知識與經驗</strong>」，整理成可被說明、可重複使用、可被分享的方法論與工具。
     </p>
   </div>
 </section>
@@ -441,18 +504,39 @@
   <div class="wrap">
     <p class="eyebrow"><span class="num">04</span> 為什麼叫「陪力卡」</p>
     <h2>陪 ＋ 力 ＝ 軟硬兩端的交織</h2>
-    <p class="lead">
-      <strong>陪力＝陪伴＋讓力量長出來</strong>
-    </p>
+
+    <div class="big-formula">
+      <span class="f-label">核心公式</span>
+      <div class="f-line">
+        <span class="f-big">陪力</span>
+        <span class="f-op">＝</span>陪伴<span class="f-op">＋</span>讓力量長出來
+      </div>
+    </div>
+
     <p>
       <strong>「陪」</strong>對應前兩類（接住、共學）的情緒和關係面：不是領、不是拉、不是推，是陪在旁邊。
     </p>
     <p>
       <strong>「力」</strong>對應後三類（做事、給角色、擴散）的能力、位置、影響面：讓對方長出自己的力量，而不是依賴陪伴者。
     </p>
-    <p>
-      「陪力」這個詞同時涵蓋了軟的那一端（情緒、關係、接住）和硬的那一端（能力、位置、影響力）。社區陪伴不是單純的情感支持，也不是單純的技能培訓，而是這兩件事的交織。
-    </p>
+
+    <div class="soft-hard-grid">
+      <div class="sh-card soft">
+        <div class="sh-tag">軟</div>
+        <div class="sh-head">陪　的那一端</div>
+        <p class="sh-desc">情緒・關係・接住</p>
+      </div>
+      <div class="sh-cross">×</div>
+      <div class="sh-card hard">
+        <div class="sh-tag">硬</div>
+        <div class="sh-head">力　的那一端</div>
+        <p class="sh-desc">能力・位置・影響力</p>
+      </div>
+    </div>
+
+    <div class="conclusion-callout">
+      兩件事交織，才是社區陪伴的真正樣子。
+    </div>
   </div>
 </section>
 
@@ -624,7 +708,7 @@
     <p class="eyebrow"><span class="num">10</span> 下一步</p>
     <h2>把框架連到故事，把故事連到影響力</h2>
     <p class="lead">
-      培力卡是方法論的起點，真正讓它有血有肉的，是 15 位利害關係人的故事，以及 2026 年的影響力報告。
+      陪力卡是方法論的起點，真正讓它有血有肉的，是 17 位利害關係人的故事，以及 2026 年的影響力報告。
     </p>
     <div class="page-nav">
       <a href="../chain/">成果事件鏈 · 詳細記錄 →</a>
@@ -636,7 +720,7 @@
 
 <footer>
   <div class="footer-mark"></div>
-  <p>旅學堂 培力卡｜社會影響力框架 · 2026-04-23</p>
+  <p>旅學堂 陪力卡｜陪伴的影響力評估框架 · 2026-04-23</p>
   <p>本站為內部工作版，校稿完成前請勿對外分享 · <a href="https://github.com/Jiang-Yude/lxuetang-system">GitHub Repo</a></p>
 </footer>
 
