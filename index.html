@@ -1,144 +1,214 @@
 <!DOCTYPE html>
-<html lang="zh-TW">
+<html lang="zh-Hant">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="robots" content="noindex, nofollow, noarchive, nosnippet">
 <title>旅學堂 培力系統</title>
 <style>
-  *, *::before, *::after { box-sizing: border-box; }
+  :root {
+    --bg:        #FBEEE6;
+    --bg-alt:    #F5DDD0;
+    --paper:     #FFFAF5;
+    --dark:      #B8523F;
+    --dark-soft: #9A3F2B;
+    --accent:    #D48A5A;
+    --brick:     #8A2F15;
+    --brick-soft:#F5C8A8;
+    --ink:       #2C2824;
+    --ink-soft:  #6B5F56;
+    --line:      #EAD2C4;
+    --line-soft: #F3E0D2;
+  }
+  * { box-sizing: border-box; }
   body {
-    margin: 0; padding: 60px 20px 40px;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang TC", "Noto Sans TC", sans-serif;
-    background: #f5f5f3; color: #1a1a18; line-height: 1.75;
-    min-height: 100vh;
+    font-family: "Noto Serif TC", "PingFang TC", serif;
+    background: var(--bg);
+    color: var(--ink);
+    margin: 0;
+    padding: 56px 20px 48px;
+    line-height: 1.8;
+    -webkit-font-smoothing: antialiased;
   }
-  .wrap { max-width: 760px; width: 100%; margin: 0 auto; }
+  .wrap { max-width: 900px; margin: 0 auto; }
 
-  .hero { margin-bottom: 48px; }
-  .hero h1 {
-    font-size: 32px; font-weight: 600; margin: 0 0 8px;
-    letter-spacing: -0.01em;
+  header {
+    text-align: center;
+    margin-bottom: 56px;
+    padding-bottom: 32px;
+    border-bottom: 2px solid rgba(212,138,90,0.35);
   }
-  .hero .subtitle {
-    font-size: 15px; color: #5f5e5a; margin: 0 0 20px; font-weight: 400;
+  h1 {
+    font-size: 2.1rem;
+    margin: 0 0 14px;
+    color: var(--dark);
+    letter-spacing: 0.02em;
+    font-weight: 700;
   }
-  .hero p {
-    font-size: 14.5px; color: #3d3c39; margin: 0 0 14px;
+  .subtitle {
+    color: var(--ink-soft);
+    font-size: 1rem;
+    margin: 0 0 20px;
+    letter-spacing: .06em;
   }
-  .hero .meta {
-    font-size: 12px; color: #85837d; margin-top: 20px;
-    padding-top: 16px; border-top: 0.5px solid rgba(0,0,0,0.1);
+  .intro {
+    font-size: 1rem;
+    color: var(--ink);
+    max-width: 680px;
+    margin: 0 auto;
+    text-align: left;
+    line-height: 1.9;
   }
+  .intro p { margin: 0 0 12px; }
+  .intro strong { color: var(--dark-soft); font-weight: 700; }
 
-  .section-label {
-    font-size: 11px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase;
-    color: #85837d; margin: 36px 0 14px; padding-left: 4px;
+  h2 {
+    font-size: 1.3rem;
+    color: var(--dark);
+    margin: 48px 0 20px;
+    padding-left: 14px;
+    border-left: 4px solid var(--accent);
+    font-weight: 700;
+    letter-spacing: .04em;
   }
 
   .card {
-    background: #fff; border: 0.5px solid rgba(0,0,0,0.12); border-radius: 14px;
-    padding: 22px 26px; margin-bottom: 14px;
-    text-decoration: none; color: inherit;
-    display: block; transition: all .15s;
-    position: relative;
+    background: var(--paper);
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    padding: 24px 28px;
+    margin-bottom: 18px;
+    transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
+    display: block;
+    text-decoration: none;
+    color: inherit;
   }
-  .card:hover { border-color: rgba(0,0,0,0.3); transform: translateY(-1px); box-shadow: 0 4px 16px rgba(0,0,0,0.04); }
-  .card.disabled { opacity: 0.55; cursor: default; pointer-events: none; }
-  .card-head { display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap; margin-bottom: 6px; }
-  .card-title { font-size: 16px; font-weight: 500; color: #1a1a18; }
+  .card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(138,47,21,0.08);
+    border-color: var(--accent);
+  }
+  .card.disabled {
+    opacity: 0.65;
+    cursor: default;
+    pointer-events: none;
+  }
   .card-tag {
-    font-size: 11px; padding: 2px 10px; border-radius: 999px;
-    border: 0.5px solid;
+    display: inline-block;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    margin-bottom: 12px;
+    letter-spacing: .04em;
+    font-family: -apple-system, "PingFang TC", sans-serif;
   }
-  .tag-framework { background: #FFF4E5; color: #A1620F; border-color: #F4D9B0; }
-  .tag-internal { background: #EEEDFE; color: #534AB7; border-color: #CECBF6; }
-  .tag-public-full { background: #E6F1FB; color: #185FA5; border-color: #B5D4F4; }
-  .tag-public-lite { background: #E9F5EC; color: #2A7A3E; border-color: #BCDFC4; }
-  .tag-pending { background: #f5f5f3; color: #85837d; border-color: rgba(0,0,0,0.15); }
-  .card-desc { font-size: 13px; color: #5f5e5a; margin: 4px 0 0; line-height: 1.7; }
-  .card-arrow { position: absolute; right: 24px; top: 24px; color: #85837d; font-size: 14px; }
+  .tag-framework { background: linear-gradient(135deg, #D48A5A, #B57A3A); color: #FFF8F0; }
+  .tag-internal  { background: linear-gradient(135deg, #8B4A6B, #6E3A55); color: #FFF8F0; }
+  .tag-public-full { background: linear-gradient(135deg, #B8523F, #9A3F2B); color: #FFF8F0; }
+  .tag-public-lite { background: linear-gradient(135deg, #5E7A4F, #4A6540); color: #FFF8F0; }
+  .tag-pending {
+    background: var(--bg-alt); color: var(--ink-soft);
+    border: 1px solid var(--line);
+    margin-left: 6px;
+  }
+  .card-title {
+    font-size: 1.2rem;
+    font-weight: 700;
+    margin: 0 0 10px;
+    color: var(--dark);
+  }
+  .card-desc {
+    color: var(--ink-soft);
+    font-size: 0.96rem;
+    margin: 0;
+    line-height: 1.85;
+  }
 
   footer {
-    margin-top: 48px; text-align: center; font-size: 11px; color: #85837d;
-    padding-top: 20px; border-top: 0.5px solid rgba(0,0,0,0.08);
+    margin-top: 72px;
+    padding-top: 28px;
+    border-top: 1px solid var(--line);
+    text-align: center;
+    color: var(--ink-soft);
+    font-size: 0.85rem;
+    letter-spacing: .04em;
+  }
+  footer a {
+    color: var(--dark);
+    text-decoration: none;
+    font-weight: 600;
+  }
+  footer a:hover { text-decoration: underline; }
+  footer .footer-mark {
+    display: inline-block;
+    width: 40px;
+    height: 2px;
+    background: var(--accent);
+    margin-bottom: 14px;
   }
 </style>
 </head>
 <body>
-
 <div class="wrap">
 
-  <div class="hero">
-    <h1>旅學堂 培力系統</h1>
-    <p class="subtitle">從培力卡框架 · 到事件鏈檢核 · 到對外影響力</p>
+<header>
+  <h1>旅學堂 培力系統</h1>
+  <p class="subtitle">培力卡框架 · 成果事件鏈 · 影響力報告</p>
+  <div class="intro">
     <p>
-      旅學堂以「培力卡」為核心方法論，在淡水地方陪伴女力導覽員、社區夥伴、消費者、家人、合作單位等利害關係人，透過 5 階段 × 15 動作的行動框架，將日常活動轉換為可被觀察、可被追蹤的社會影響力。
+      旅學堂以<strong>「培力卡」</strong>為核心方法論，在淡水陪伴女力導覽員、社區夥伴、消費者、家人、合作單位，透過五階段 × 十五動作的框架，把日常活動轉化為可被觀察、可被追蹤的社會影響力。
     </p>
     <p>
-      本系統整合三個層次：<strong>培力卡框架</strong>說明方法論本身；<strong>成果事件鏈</strong>以 15 位受訪者的原話為基礎，記錄每一條改變的發生；<strong>影響力報告</strong>則是對外交付的整合成果。
-    </p>
-    <p class="meta">
-      整理日期：2026-04-23　|　Vicky · 雷總管　|　內部工作版，校稿中
+      本站整合三個層次：<strong>培力卡框架</strong>說明方法論、<strong>成果事件鏈</strong>以 15 位受訪者原話記錄每一條改變、<strong>影響力報告</strong>則是對外交付的整合成果。
     </p>
   </div>
+</header>
 
-  <p class="section-label">培力卡框架</p>
+<h2>培力卡框架</h2>
 
-  <a class="card disabled">
-    <span class="card-arrow">→</span>
-    <div class="card-head">
-      <span class="card-title">旅學堂 培力卡介紹</span>
-      <span class="card-tag tag-framework">框架說明</span>
-      <span class="card-tag tag-pending">整理中</span>
-    </div>
-    <p class="card-desc">
-      介紹培力卡的設計邏輯——5 階段（接住／共學／做事／給角色／擴散）× 15 動作的社會影響力框架，以及它如何串接「投入－活動－產出－成果－價值－影響」的理論變革。
-    </p>
-  </a>
+<a class="card disabled">
+  <span class="card-tag tag-framework">框架說明</span>
+  <span class="card-tag tag-pending">整理中</span>
+  <div class="card-title">旅學堂 培力卡介紹</div>
+  <p class="card-desc">
+    介紹培力卡的設計邏輯——五階段（接住／共學／做事／給角色／擴散）× 十五動作的社會影響力框架，以及它如何串接「投入－活動－產出－成果－價值－影響」的理論變革。
+  </p>
+</a>
 
-  <p class="section-label">2026 年度成果</p>
+<h2>2026 年度成果</h2>
 
-  <a class="card" href="./chain/">
-    <span class="card-arrow">→</span>
-    <div class="card-head">
-      <span class="card-title">2026 年 成果事件鏈　詳細記錄</span>
-      <span class="card-tag tag-internal">內部討論用</span>
-    </div>
-    <p class="card-desc">
-      依 15 位利害關係人的逐字稿重建的完整事件鏈。包含 IOOVI 分析、五階段 × 面向雙軸統計、17 位人物卡與四欄標記，成果欄位以受訪者原話語言呈現。供團隊內部追蹤、討論、盤點使用。
-    </p>
-  </a>
+<a class="card" href="./chain/">
+  <span class="card-tag tag-internal">內部討論用</span>
+  <div class="card-title">2026 年 成果事件鏈　詳細記錄</div>
+  <p class="card-desc">
+    依 15 位利害關係人逐字稿重建的完整事件鏈。包含 IOOVI 分析、五階段 × 面向雙軸統計、17 位人物卡與四欄標記，成果欄位以受訪者原話呈現。供團隊內部追蹤、討論、盤點使用。
+  </p>
+</a>
 
-  <a class="card" href="./impact/">
-    <span class="card-arrow">→</span>
-    <div class="card-head">
-      <span class="card-title">2026 年 旅學堂影響力報告</span>
-      <span class="card-tag tag-public-full">對外 · 詳細版</span>
-    </div>
-    <p class="card-desc">
-      對外交付的完整影響力報告。整合 2026 年度培力卡系統的累積成果、量化指標、質性敘事與案例故事。提供基金會、合作單位、潛在夥伴參考。
-    </p>
-  </a>
+<a class="card" href="./impact/">
+  <span class="card-tag tag-public-full">對外 · 詳細版</span>
+  <div class="card-title">2026 年 旅學堂影響力報告</div>
+  <p class="card-desc">
+    對外交付的完整影響力報告。整合 2026 年度培力卡系統的累積成果、量化指標、質性敘事與案例故事。提供基金會、合作單位、潛在夥伴參考。
+  </p>
+</a>
 
-  <a class="card disabled">
-    <span class="card-arrow">→</span>
-    <div class="card-head">
-      <span class="card-title">2026 年 旅學堂影響力報告</span>
-      <span class="card-tag tag-public-lite">對外 · 簡易版</span>
-      <span class="card-tag tag-pending">整理中</span>
-    </div>
-    <p class="card-desc">
-      詳細版的精簡版本，聚焦三個重點：誰被培力、產生什麼改變、帶來什麼社會價值。適合快速分享、社群貼文、新夥伴初次認識。
-    </p>
-  </a>
-
-</div>
+<a class="card disabled">
+  <span class="card-tag tag-public-lite">對外 · 簡易版</span>
+  <span class="card-tag tag-pending">整理中</span>
+  <div class="card-title">2026 年 旅學堂影響力報告</div>
+  <p class="card-desc">
+    詳細版的精簡版本，聚焦三個重點：誰被培力、產生什麼改變、帶來什麼社會價值。適合快速分享、社群貼文、新夥伴初次認識。
+  </p>
+</a>
 
 <footer>
-  本站為內部工作版，校稿完成前請勿對外分享 · noindex<br>
-  原始檔 &amp; 版本管理：<a href="https://github.com/Jiang-Yude/lxuetang-system" style="color: inherit;">github.com/Jiang-Yude/lxuetang-system</a>
+  <div class="footer-mark"></div>
+  <p>最後更新：2026-04-23 ｜ <a href="https://github.com/Jiang-Yude/lxuetang-system">GitHub Repo</a></p>
+  <p>本站為內部工作版，校稿完成前請勿對外分享。</p>
 </footer>
 
+</div>
 </body>
 </html>
